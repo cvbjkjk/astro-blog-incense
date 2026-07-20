@@ -1,5 +1,9 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+export const SITE_TITLE = "INCENSE";
+export const SITE_DESCRIPTION = "Exploring the art, history, and materials of Chinese incense culture — from precious agarwood to ancient blending traditions.";
+export const SITE_URL = "https://incense.blog";
 
-export const SITE_TITLE = "Astro Blog";
-export const SITE_DESCRIPTION = "Welcome to my website!";
+export const NAV_ITEMS = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Journal" },
+  { href: "/about", label: "About" },
+] as const;

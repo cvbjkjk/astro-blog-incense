@@ -1,50 +1,516 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const materials = [
+  {
+    name: "Agarwood",
+    latin: "Aquilaria sinensis",
+    desc: "The most precious incense material, formed when resin-infused heartwood undergoes years of natural transformation.",
+  },
+  {
+    name: "Sandalwood",
+    latin: "Santalum album",
+    desc: "A warm, creamy wood with a sweet balsamic profile. Prized in meditation for its grounding presence.",
+  },
+  {
+    name: "Frankincense",
+    latin: "Boswellia sacra",
+    desc: "An aromatic resin with citrus-pine notes, used for thousands of years in spiritual ceremonies across cultures.",
+  },
+  {
+    name: "Clove Bud",
+    latin: "Syzygium aromaticum",
+    desc: "Dried flower buds that bring a sharp, warming spice to incense blends. A key note in many traditional formulas.",
+  },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Journal of Chinese Incense</p>
+        <h1 class="hero__title">The Art of <em class="hero__em">Incense</em></h1>
+        <p class="hero__sub">
+          A curated exploration of China's incense heritage - from wild-harvested agarwood to century-old blending traditions that shaped a culture.
+        </p>
+        <div class="hero__actions">
+          <a href="/blog" class="btn btn-primary">Explore the Journal</a>
+          <a href="/about" class="btn btn-ghost">About This Blog</a>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__image-placeholder">
+          <div class="hero__smoke"></div>
+          <div class="hero__vignette"></div>
+          <p class="hero__image-credit">Image: Incense materials photography</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Materials -->
+  <section class="materials">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-label__line"></span>
+        <span class="section-label__text">Raw Materials</span>
+      </div>
+      <h2 class="section-title">Essential Incense Materials</h2>
+      <p class="section-desc">Four foundational ingredients that define the Chinese incense tradition.</p>
+      <div class="materials__grid">
+        {materials.map((m, i) => (
+          <article class="material-card" style={`--reveal-delay: ${i * 0.1}s`}>
+            <div class="material-card__image">
+              <div class="material-card__placeholder">
+                <span class="material-card__initial">{m.name[0]}</span>
+              </div>
+            </div>
+            <div class="material-card__body">
+              <h3 class="material-card__name">{m.name}</h3>
+              <p class="material-card__latin">{m.latin}</p>
+              <p class="material-card__desc">{m.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <div class="container">
+      <div class="philosophy__card">
+        <blockquote class="philosophy__quote">
+          <p>Incense is not merely fragrance - it is a bridge between the material and the spiritual, a practice that cultivates stillness in a restless world.</p>
+        </blockquote>
+        <p class="philosophy__attribution">From the ancient <cite>Xiang Pu</cite> (Incense Manuals) of the Song Dynasty</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Posts -->
+  {posts.length > 0 && (
+    <section class="latest">
+      <div class="container">
+        <h2 class="section-title">Latest Writings</h2>
+        <div class="latest__grid">
+          {posts.map((post, i) => (
+            <a href={`/blog/${post.id}/`} class="post-card" style={`--reveal-delay: ${i * 0.1}s`}>
+              <article>
+                <div class="post-card__image">
+                  {post.data.heroImage ? (
+                    <img src={post.data.heroImage} alt="" loading="lazy" />
+                  ) : (
+                    <div class="post-card__placeholder">
+                      <span>INCENSE</span>
+                    </div>
+                  )}
+                </div>
+                <div class="post-card__body">
+                  <time class="post-card__date">
+                    <FormattedDate date={post.data.pubDate} />
+                  </time>
+                  <h3 class="post-card__title">{post.data.title}</h3>
+                  {post.data.description && (
+                    <p class="post-card__desc">{post.data.description}</p>
+                  )}
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+        <div class="latest__action">
+          <a href="/blog" class="btn btn-ghost">View All Articles</a>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    padding: 40px 0 80px;
+    min-height: 80dvh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .hero__title {
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+
+  .hero__em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-forest);
+    font-size: 1.05em;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hero__em {
+      color: var(--color-forest-light);
+    }
+  }
+
+  .hero__sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 50ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .hero__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-forest) 0%, #1a2d1e 50%, #2d1a0a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__smoke {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(212, 165, 69, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 30% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 40%);
+  }
+
+  .hero__vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
+    border-radius: inherit;
+  }
+
+  .hero__image-credit {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-mono);
+  }
+
+  /* ---- Section Shared ---- */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-label__line {
+    width: 32px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .section-label__text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom: 12px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 48px;
+  }
+
+  /* ---- Materials ---- */
+  .materials {
+    padding: 80px 0;
+  }
+
+  .materials__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .material-card {
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    animation: fade-up 0.7s var(--ease-spring) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  .material-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .material-card__image {
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .material-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-forest), var(--color-forest-light));
+  }
+
+  .material-card__initial {
+    font-size: 48px;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--font-sans);
+  }
+
+  .material-card__body {
+    padding: 20px;
+  }
+
+  .material-card__name {
+    font-size: 16px;
+    font-weight: 550;
+    margin-bottom: 2px;
+  }
+
+  .material-card__latin {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--color-text-tertiary);
+    margin-bottom: 10px;
+  }
+
+  .material-card__desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  /* ---- Philosophy ---- */
+  .philosophy {
+    padding: 80px 0;
+  }
+
+  .philosophy__card {
+    padding: 64px 48px;
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .philosophy__quote {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    line-height: 1.6;
+    color: var(--color-text);
+    font-weight: 400;
+    font-style: italic;
+    margin: 20px 0;
+  }
+
+  .philosophy__quote p {
+    color: inherit;
+    max-width: none;
+  }
+
+  .philosophy__attribution {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    cite {
+      font-style: normal;
+    }
+  }
+
+  /* ---- Latest Posts ---- */
+  .latest {
+    padding: 80px 0;
+  }
+
+  .latest__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .post-card {
+    display: block;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    animation: fade-up 0.7s var(--ease-spring) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .post-card__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .post-card:hover .post-card__image img {
+    transform: scale(1.05);
+  }
+
+  .post-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-surface-subtle), var(--color-surface));
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-text-tertiary);
+  }
+
+  .post-card__body {
+    padding: 20px;
+  }
+
+  .post-card__date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.05em;
+  }
+
+  .post-card__title {
+    font-size: 17px;
+    font-weight: 550;
+    margin: 6px 0 8px;
+    color: var(--color-text);
+  }
+
+  .post-card:hover .post-card__title {
+    color: var(--color-accent);
+  }
+
+  .post-card__desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  .latest__action {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 1024px) {
+    .materials__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .latest__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 40px 0 60px;
+      min-height: auto;
+    }
+
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero__visual {
+      order: -1;
+    }
+
+    .hero__image-placeholder {
+      aspect-ratio: 16 / 10;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .philosophy__card {
+      padding: 40px 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .materials__grid,
+    .latest__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
