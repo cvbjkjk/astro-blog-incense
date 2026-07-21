@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Privacy Policy — INCENSE" description="Privacy policy for naturalincense.de">
+  <section class="privacy">
+    <div class="container">
+      <div class="privacy__inner">
+        <h1 class="privacy__title">Privacy Policy</h1>
+        <p class="privacy__updated">Last updated: July 2026</p>
+
+        <div class="prose">
+          <h2>Introduction</h2>
+          <p>
+            This website, naturalincense.de (the "Site"), is a personal blog about Chinese incense
+            culture. This page explains how the Site handles your data when you visit.
+          </p>
+
+          <h2>Data Collected</h2>
+          <p>
+            The Site collects minimal data automatically through its hosting provider (Cloudflare):
+          </p>
+          <ul>
+            <li>Your IP address (anonymized after a short period)</li>
+            <li>Browser type and version</li>
+            <li>Pages visited and timestamps</li>
+            <li>Referring website, if any</li>
+          </ul>
+          <p>
+            This data is used solely for operational purposes — monitoring site performance,
+            diagnosing errors, and understanding general traffic patterns. It is not sold,
+            shared, or used for advertising.
+          </p>
+
+          <h2>Cookies</h2>
+          <p>
+            This Site does not set any functional, analytical, or marketing cookies. Cloudflare,
+            as the hosting provider, may set essential cookies required for the operation of
+            their content delivery network and security features. These are strictly necessary
+            and do not track your activity across other sites.
+          </p>
+
+          <h2>Third-Party Services</h2>
+          <p>The Site uses the following third-party services:</p>
+          <ul>
+            <li><strong>Cloudflare</strong> — content delivery, DNS, and DDoS protection</li>
+            <li><strong>GitHub</strong> — source code hosting (no data collection from visitors)</li>
+          </ul>
+          <p>
+            Each service operates under its own privacy policy. No personal data is intentionally
+            shared with these services beyond what is necessary for the Site to function.
+          </p>
+
+          <h2>Data Storage and Retention</h2>
+          <p>
+            Server logs are retained for a maximum of 30 days. No user accounts, comments,
+            or newsletter subscriptions are offered on this Site, so no personal data is stored
+            beyond routine server logs.
+          </p>
+
+          <h2>Your Rights (GDPR)</h2>
+          <p>
+            If you are a resident of the European Economic Area, you have the right to:
+          </p>
+          <ul>
+            <li>Request access to any personal data held about you</li>
+            <li>Request correction or deletion of your data</li>
+            <li>Object to or restrict processing of your data</li>
+            <li>Lodge a complaint with your local data protection authority</li>
+          </ul>
+          <p>
+            To exercise any of these rights, contact
+            <a href="mailto:hello@naturalincense.de">hello@naturalincense.de</a>.
+          </p>
+
+          <h2>Contact</h2>
+          <p>
+            For privacy-related inquiries: <a href="mailto:hello@naturalincense.de">hello@naturalincense.de</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .privacy {
+    padding: 64px 0 80px;
+  }
+
+  .privacy__inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .privacy__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    margin-bottom: 8px;
+  }
+
+  .privacy__updated {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 40px;
+  }
+
+  .prose {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .prose p {
+    margin-bottom: 1.2em;
+    color: var(--color-text);
+    max-width: none;
+  }
+
+  .prose h2 {
+    font-size: 1.2rem;
+    font-weight: 550;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    letter-spacing: -0.01em;
+  }
+
+  .prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose ul {
+    margin-bottom: 1.2em;
+    padding-left: 24px;
+  }
+
+  .prose li {
+    margin-bottom: 0.3em;
+    list-style: disc;
+    color: var(--color-text-secondary);
+  }
+</style>

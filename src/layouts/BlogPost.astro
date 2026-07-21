@@ -2,10 +2,11 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import TagChip from '../components/TagChip.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — INCENSE`} description={description}>
@@ -29,6 +30,11 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       </div>
       <h1 class="post__title">{title}</h1>
       {description && <p class="post__desc">{description}</p>}
+      {tags && tags.length > 0 && (
+        <div class="post__tags">
+          {tags.map((tag) => <TagChip tag={tag} />)}
+        </div>
+      )}
     </div>
 
     <div class="prose">
@@ -92,6 +98,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     font-size: 15px;
     line-height: 1.6;
     color: var(--color-text-secondary);
+  }
+
+  .post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
   }
 
   /* ---- Prose ---- */

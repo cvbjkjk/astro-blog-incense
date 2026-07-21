@@ -3,6 +3,7 @@ import { SITE_TITLE } from '../../consts';
 import Layout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
+import TagChip from '../../components/TagChip.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -39,6 +40,11 @@ const rest = posts.slice(1);
               </time>
               <h2 class="featured-post__title">{featured.data.title}</h2>
               <p class="featured-post__desc">{featured.data.description}</p>
+              {featured.data.tags && featured.data.tags.length > 0 && (
+                <div class="featured-post__tags">
+                  {featured.data.tags.map((tag) => <TagChip tag={tag} size="sm" />)}
+                </div>
+              )}
               <span class="featured-post__cta">Read Article</span>
             </div>
           </article>
@@ -70,6 +76,11 @@ const rest = posts.slice(1);
                   <h3 class="post-list__title">{post.data.title}</h3>
                   {post.data.description && (
                     <p class="post-list__desc">{post.data.description}</p>
+                  )}
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="post-list__tags">
+                      {post.data.tags.map((tag) => <TagChip tag={tag} size="sm" />)}
+                    </div>
                   )}
                 </div>
               </article>
@@ -273,6 +284,14 @@ const rest = posts.slice(1);
     font-size: 13px;
     line-height: 1.5;
     color: var(--color-text-secondary);
+  }
+
+  .featured-post__tags,
+  .post-list__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
   }
 
   /* ---- Responsive ---- */

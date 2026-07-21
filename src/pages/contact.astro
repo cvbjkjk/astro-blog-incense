@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact — INCENSE" description="Get in touch about incense, materials, or collaborations.">
+  <section class="contact">
+    <div class="container">
+      <div class="contact__card">
+        <div class="section-label">
+          <span class="section-label__line"></span>
+          <span class="section-label__text">Connect</span>
+        </div>
+        <h1 class="contact__title">Get in Touch</h1>
+        <p class="contact__desc">
+          Whether you have questions about incense materials, want to share your own
+          knowledge, or are interested in collaboration — I would be glad to hear from you.
+        </p>
+        <a href="mailto:hello@naturalincense.de" class="contact__email">
+          hello@naturalincense.de
+        </a>
+        <p class="contact__note">
+          I try to respond within a few days. Please note that I cannot offer personal
+          incense consultations or material appraisals.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding: 80px 0;
+    min-height: 70dvh;
+    display: flex;
+    align-items: center;
+  }
+
+  .contact__card {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 64px 48px;
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .contact__title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 16px 0;
+  }
+
+  .contact__desc {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0 auto 32px;
+    max-width: 42ch;
+  }
+
+  .contact__email {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-accent);
+    padding: 14px 32px;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    transition: all 0.25s var(--ease-out);
+    text-decoration: none;
+  }
+
+  .contact__email:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .contact__note {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: 24px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .contact__card {
+      padding: 40px 24px;
+    }
+  }
+</style>

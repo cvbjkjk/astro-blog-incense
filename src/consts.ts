@@ -5,5 +5,8 @@ export const SITE_URL = "https://incense.blog";
 export const NAV_ITEMS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Journal" },
+  { href: "/materials", label: "Materials" },
+  { href: "/tags", label: "Topics" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ] as const;

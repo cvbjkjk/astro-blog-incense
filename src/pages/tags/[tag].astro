@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagChip from '../../components/TagChip.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tagSet = new Set<string>();
+  for (const post of posts) {
+    if (post.data.tags) {
+      for (const tag of post.data.tags) {
+        tagSet.add(tag);
+      }
+    }
+  }
+  return [...tagSet].map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const filtered = allPosts
+  .filter((post) => post.data.tags?.includes(tag))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title={`${tag} — INCENSE`} description={`Articles about ${tag} in Chinese incense culture.`}>
+  <section class="tag-page">
+    <div class="container">
+      <div class="tag-page__header">
+        <a href="/tags" class="tag-page__back">Topics</a>
+        <h1 class="tag-page__title">{tag}</h1>
+        <p class="tag-page__count">{filtered.length} {filtered.length === 1 ? "article" : "articles"}</p>
+      </div>
+
+      <div class="tag-page__grid">
+        {filtered.map((post) => (
+          <a href={`/blog/${post.id}/`} class="post-card">
+            <article>
+              <div class="post-card__image">
+                {post.data.heroImage ? (
+                  <img src={post.data.heroImage} alt="" loading="lazy" />
+                ) : (
+                  <div class="post-card__placeholder">
+                    <span>INCENSE</span>
+                  </div>
+                )}
+              </div>
+              <div class="post-card__body">
+                <time class="post-card__date">
+                  <FormattedDate date={post.data.pubDate} />
+                </time>
+                <h2 class="post-card__title">{post.data.title}</h2>
+                {post.data.description && (
+                  <p class="post-card__desc">{post.data.description}</p>
+                )}
+                {post.data.tags && (
+                  <div class="post-card__tags">
+                    {post.data.tags.map((t) => (
+                      <TagChip tag={t} size="sm" />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-page {
+    padding: 64px 0 80px;
+  }
+
+  .tag-page__header {
+    margin-bottom: 40px;
+  }
+
+  .tag-page__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+  }
+
+  .tag-page__back:hover {
+    color: var(--color-accent);
+  }
+
+  .tag-page__back::before {
+    content: "\2190";
+    margin-right: 4px;
+  }
+
+  .tag-page__title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin-bottom: 6px;
+    text-transform: capitalize;
+  }
+
+  .tag-page__count {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+  }
+
+  .tag-page__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .post-card {
+    display: block;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .post-card__image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .post-card:hover .post-card__image img {
+    transform: scale(1.05);
+  }
+
+  .post-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-surface-subtle), var(--color-surface));
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-text-tertiary);
+  }
+
+  .post-card__body {
+    padding: 20px;
+  }
+
+  .post-card__date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.05em;
+  }
+
+  .post-card__title {
+    font-size: 16px;
+    font-weight: 550;
+    margin: 6px 0 8px;
+    color: var(--color-text);
+  }
+
+  .post-card:hover .post-card__title {
+    color: var(--color-accent);
+  }
+
+  .post-card__desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  .post-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .tag-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

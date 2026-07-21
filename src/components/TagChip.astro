@@ -1,0 +1,39 @@
+---
+interface Props {
+  tag: string;
+  size?: "sm" | "md";
+}
+
+const { tag, size = "md" } = Astro.props;
+---
+
+<a href={`/tags/${tag}/`} class={`tag-chip tag-chip--${size}`}>
+  {tag}
+</a>
+
+<style>
+  .tag-chip {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s var(--ease-out);
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .tag-chip:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .tag-chip--sm {
+    font-size: 9px;
+    padding: 2px 8px;
+  }
+</style>

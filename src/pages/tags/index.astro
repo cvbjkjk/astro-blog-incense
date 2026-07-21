@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagChip from '../../components/TagChip.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+  if (post.data.tags) {
+    for (const tag of post.data.tags) {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    }
+  }
+}
+
+const sortedTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<BaseLayout title="Topics — INCENSE" description="Browse incense articles by topic.">
+  <section class="tags-page">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-label__line"></span>
+        <span class="section-label__text">Topics</span>
+      </div>
+      <h1 class="tags-page__title">Browse by Topic</h1>
+      <p class="tags-page__desc">{tagCounts.size} topics across {posts.length} articles.</p>
+
+      {sortedTags.length > 0 ? (
+        <div class="tags-page__grid">
+          {sortedTags.map(([tag, count]) => (
+            <a href={`/tags/${tag}/`} class="tag-card">
+              <span class="tag-card__name">{tag}</span>
+              <span class="tag-card__count">{count} {count === 1 ? "post" : "posts"}</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="tags-page__empty">No topics yet. Check back soon.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tags-page {
+    padding: 64px 0 80px;
+  }
+
+  .tags-page__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin-bottom: 12px;
+  }
+
+  .tags-page__desc {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 40px;
+  }
+
+  .tags-page__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .tag-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+  }
+
+  .tag-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .tag-card__name {
+    font-size: 16px;
+    font-weight: 550;
+    color: var(--color-text);
+    text-transform: capitalize;
+  }
+
+  .tag-card:hover .tag-card__name {
+    color: var(--color-accent);
+  }
+
+  .tag-card__count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+  }
+
+  .tags-page__empty {
+    text-align: center;
+    padding: 64px;
+    color: var(--color-text-tertiary);
+    font-size: 15px;
+  }
+</style>

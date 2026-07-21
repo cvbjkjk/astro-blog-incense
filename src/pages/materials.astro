@@ -1,0 +1,341 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const materials = [
+  {
+    slug: "agarwood",
+    name: "Agarwood",
+    latin: "Aquilaria sinensis",
+    aka: "Chenxiang (沉香)",
+    category: "Woods",
+    description: "The most precious incense material in Chinese tradition. Agarwood forms when a fungal infection causes the tree's heartwood to produce a dense, fragrant resin. This resin-infused wood has been treasured for millennia, once worth its weight in gold.",
+    note: "Warm, sweet balsamic with complex resinous depth",
+  },
+  {
+    slug: "sandalwood",
+    name: "Sandalwood",
+    latin: "Santalum album",
+    aka: "Tanxiang (檀香)",
+    category: "Woods",
+    description: "A hemiparasitic tree prized for its creamy, sweet-scented heartwood. Indian sandalwood (Mysore) is the most revered variety. In Chinese incense, it is a staple for meditation and daily offerings, valued for its steady, grounding presence.",
+    note: "Creamy, warm, sweet with a subtle milky smoothness",
+  },
+  {
+    slug: "frankincense",
+    name: "Frankincense",
+    latin: "Boswellia sacra",
+    aka: "Ruxiang (乳香)",
+    category: "Resins",
+    description: "An aromatic resin harvested from Boswellia trees by scoring the bark and collecting the dried tears. Frankincense has been traded along the Silk Road for thousands of years and remains central to both Chinese incense and global spiritual practices.",
+    note: "Citrus-pine opening with warm, balsamic depth",
+  },
+  {
+    slug: "clove-bud",
+    name: "Clove Bud",
+    latin: "Syzygium aromaticum",
+    aka: "Dingxiang (丁香)",
+    category: "Spices",
+    description: "Dried flower buds of the clove tree, bringing a sharp, warming spice to incense blends. In traditional Chinese medicine, clove is considered warming and stimulating. It is a key ingredient in many classic hehe (blended) incense formulas.",
+    note: "Sharp, warming, numbing spice with sweet undertones",
+  },
+  {
+    slug: "cassia",
+    name: "Cassia",
+    latin: "Cinnamomum cassia",
+    aka: "Rougui (肉桂)",
+    category: "Spices",
+    description: "The dried bark of Cinnamomum cassia, a close relative of true cinnamon but with a stronger, more pungent profile. Cassia bark appears in many traditional incense blends as a warming, sweet note that harmonizes resinous and woody ingredients.",
+    note: "Sweet, woody cinnamon with a pungent edge",
+  },
+  {
+    slug: "patchouli",
+    name: "Patchouli",
+    latin: "Pogostemon cablin",
+    aka: "Guanghuoxiang (广藿香)",
+    category: "Herbs",
+    description: "A bushy herb whose fermented and aged leaves produce a deep, earthy fragrance. Patchouli is used in Chinese incense as a base note that anchors lighter ingredients. Its scent becomes richer and more refined with age, much like a fine wine.",
+    note: "Earthy, musky, wine-like with a deep bitter-sweetness",
+  },
+  {
+    slug: "camphor",
+    name: "Camphor",
+    latin: "Cinnamomum camphora",
+    aka: "Zhangnao (樟脑)",
+    category: "Resins",
+    description: "A white crystalline substance distilled from the wood of the camphor laurel. Camphor has a sharp, cooling, medicinal aroma that cuts through heavier notes. In traditional incense, it is used sparingly to open the nasal passages and sharpen clarity.",
+    note: "Cooling, medicinal, sharp with a camphoraceous bite",
+  },
+  {
+    slug: "spikenard",
+    name: "Spikenard",
+    latin: "Nardostachys jatamansi",
+    aka: "Gansong (甘松)",
+    category: "Herbs",
+    description: "A flowering plant from the valerian family, whose roots yield a thick, earthy oil. Spikenard has been used since antiquity across Asia. In Chinese incense, it provides a deep, animalic base note that lends gravity and longevity to blended formulas.",
+    note: "Earthy, animalic, musty with sweet woody undertones",
+  },
+  {
+    slug: "borneol",
+    name: "Borneol",
+    latin: "Dryobalanops aromatica",
+    aka: "Bingpian (冰片)",
+    category: "Resins",
+    description: "A crystalline terpene obtained from the trunk of the Dipterocarpaceae tree. Natural borneol has a penetrating, cooling aroma that is said to open the senses and aid meditation. It is one of the most important single ingredients in classical incense medicine.",
+    note: "Cool, piercingly fresh with a minty-camphor lift",
+  },
+  {
+    slug: "licorice",
+    name: "Licorice",
+    latin: "Glycyrrhiza uralensis",
+    aka: "Gancao (甘草)",
+    category: "Herbs",
+    description: "The sweet root of the licorice plant, widely used in traditional Chinese medicine and incense alchemy. Licorise harmonizes other ingredients, softening harsh edges and extending the longevity of a blend. It is rarely used alone but appears in countless formulas.",
+    note: "Sweet, earthy, enveloping with a slight menthol finish",
+  },
+];
+
+const categories = ["All", "Woods", "Resins", "Herbs", "Spices"];
+
+const categoryColors = {
+  Woods: "var(--color-forest)",
+  Resins: "var(--color-accent)",
+  Herbs: "var(--color-forest-light)",
+  Spices: "#c76a3a",
+};
+---
+
+<BaseLayout title="Materials — INCENSE" description="A directory of raw incense materials used in traditional Chinese incense culture.">
+  <section class="materials-page">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-label__line"></span>
+        <span class="section-label__text">Encyclopedia</span>
+      </div>
+      <h1 class="materials-page__title">Incense Materials</h1>
+      <p class="materials-page__desc">A directory of raw materials used in traditional Chinese incense.</p>
+
+      <!-- Filter Tabs -->
+      <div class="materials-page__filters" id="filters">
+        {categories.map((cat) => (
+          <button
+            class="filter-btn"
+            data-category={cat}
+            data-active={cat === "All" ? "true" : "false"}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Material Grid -->
+      <div class="materials-page__grid" id="materialGrid">
+        {materials.map((m, i) => (
+          <article
+            class="material-card"
+            data-category={m.category}
+            style={`--reveal-delay: ${i * 0.05}s`}
+          >
+            <div
+              class="material-card__image"
+              style={`background: linear-gradient(135deg, ${categoryColors[m.category] || "var(--color-forest)"}, ${categoryColors[m.category] || "var(--color-forest-light)"})`}
+            >
+              <span class="material-card__initial">{m.name[0]}</span>
+            </div>
+            <div class="material-card__body">
+              <div class="material-card__header">
+                <h2 class="material-card__name">{m.name}</h2>
+                <span
+                  class="material-card__badge"
+                  style={`color: ${categoryColors[m.category] || "var(--color-accent)"}`}
+                >
+                  {m.category}
+                </span>
+              </div>
+              <p class="material-card__latin">{m.latin}</p>
+              <p class="material-card__aka">{m.aka}</p>
+              <p class="material-card__desc">{m.description}</p>
+              <p class="material-card__note">
+                <span class="material-card__note-label">Note profile:</span>
+                {m.note}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll("#filters .filter-btn");
+  const cards = document.querySelectorAll("#materialGrid .material-card");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const category = btn.dataset.category;
+
+      buttons.forEach((b) => (b.dataset.active = "false"));
+      btn.dataset.active = "true";
+
+      cards.forEach((card) => {
+        if (category === "All" || card.dataset.category === category) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .materials-page {
+    padding: 64px 0 80px;
+  }
+
+  .materials-page__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin-bottom: 12px;
+  }
+
+  .materials-page__desc {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+  }
+
+  /* ---- Filters ---- */
+  .materials-page__filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 8px 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .filter-btn[data-active="true"] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  /* ---- Grid ---- */
+  .materials-page__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .material-card {
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .material-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .material-card__image {
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .material-card__initial {
+    font-size: 64px;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.25);
+    font-family: var(--font-sans);
+  }
+
+  .material-card__body {
+    padding: 20px;
+  }
+
+  .material-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+
+  .material-card__name {
+    font-size: 18px;
+    font-weight: 550;
+    letter-spacing: -0.02em;
+  }
+
+  .material-card__badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .material-card__latin {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0;
+  }
+
+  .material-card__aka {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  .material-card__desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .material-card__note {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    line-height: 1.5;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .material-card__note-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .materials-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
