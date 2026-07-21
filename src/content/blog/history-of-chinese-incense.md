@@ -2,6 +2,7 @@
 title: "A Brief History of Chinese Incense"
 description: "From Shang Dynasty oracle rites to Song Dynasty literati culture - trace the evolution of incense (xiang) through 3000 years of Chinese civilization and its enduring influence."
 pubDate: "2024-10-20"
+heroImage: "/images/calligraphy.jpg"
 tags: ["history", "culture", "song-dynasty", "guide"]
 ---
 

@@ -12,21 +12,25 @@ const materials = [
   {
     name: "Agarwood",
     latin: "Aquilaria sinensis",
+    image: "/images/wood-material.jpg",
     desc: "The most precious incense material, formed when resin-infused heartwood undergoes years of natural transformation.",
   },
   {
     name: "Sandalwood",
     latin: "Santalum album",
+    image: "/images/wood-texture.jpg",
     desc: "A warm, creamy wood with a sweet balsamic profile. Prized in meditation for its grounding presence.",
   },
   {
     name: "Frankincense",
     latin: "Boswellia sacra",
+    image: "/images/frankincense-resin.jpg",
     desc: "An aromatic resin with citrus-pine notes, used for thousands of years in spiritual ceremonies across cultures.",
   },
   {
     name: "Clove Bud",
     latin: "Syzygium aromaticum",
+    image: "/images/clove-bud.jpg",
     desc: "Dried flower buds that bring a sharp, warming spice to incense blends. A key note in many traditional formulas.",
   },
 ];
@@ -48,8 +52,8 @@ const materials = [
         </div>
       </div>
       <div class="hero__visual">
-        <div class="hero__image-placeholder">
-          <div class="hero__smoke"></div>
+        <div class="hero__image">
+          <img src="/images/meditation-incense.jpg" alt="Incense smoke in a quiet meditation space" />
           <div class="hero__vignette"></div>
         </div>
       </div>
@@ -69,9 +73,9 @@ const materials = [
         {materials.map((m, i) => (
           <article class="material-card" style={`--reveal-delay: ${i * 0.1}s`}>
             <div class="material-card__image">
-              <div class="material-card__placeholder">
-                <span class="material-card__initial">{m.name[0]}</span>
-              </div>
+              <img src={m.image} alt="" loading="lazy" />
+              <div class="material-card__overlay"></div>
+              <span class="material-card__initial">{m.name[0]}</span>
             </div>
             <div class="material-card__body">
               <h3 class="material-card__name">{m.name}</h3>
@@ -204,21 +208,18 @@ const materials = [
     align-items: center;
   }
 
-  .hero__image-placeholder {
+  .hero__image {
     width: 100%;
     aspect-ratio: 4 / 5;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--color-forest) 0%, #1a2d1e 50%, #2d1a0a 100%);
-    position: relative;
     overflow: hidden;
+    position: relative;
   }
 
-  .hero__smoke {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 70% 30%, rgba(212, 165, 69, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 30% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 40%);
+  .hero__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .hero__vignette {
@@ -298,23 +299,36 @@ const materials = [
 
   .material-card__image {
     aspect-ratio: 1;
+    position: relative;
     overflow: hidden;
   }
 
-  .material-card__placeholder {
+  .material-card__image img {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-forest), var(--color-forest-light));
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .material-card:hover .material-card__image img {
+    transform: scale(1.05);
+  }
+
+  .material-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
   }
 
   .material-card__initial {
-    font-size: 48px;
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-size: 40px;
     font-weight: 200;
     color: rgba(255, 255, 255, 0.3);
     font-family: var(--font-sans);
+    line-height: 1;
   }
 
   .material-card__body {
