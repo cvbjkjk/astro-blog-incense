@@ -10,7 +10,7 @@ interface Props {
 const { title, description, ogImage } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteURL = new URL('/', Astro.site);
-const defaultOgImage = new URL('/images/meditation-incense.jpg', Astro.site);
+const defaultOgImage = new URL('/images/hero-home.jpg', Astro.site);
 
 const siteSchema = {
   '@context': 'https://schema.org',
