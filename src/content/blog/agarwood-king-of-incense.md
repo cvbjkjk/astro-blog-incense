@@ -1,6 +1,6 @@
 ---
 title: "Agarwood: The King of Chinese Incense"
-description: "Discover why agarwood (chenxiang) has been the most prized incense material for millennia - from its mysterious formation in the Aquilaria tree to its role in Chinese culture, medicine, and spiritual practice."
+description: "Discover why agarwood (chenxiang) is the most prized incense material on earth — how it forms, its grades, aroma, history, and medicinal use in Chinese culture."
 pubDate: "2024-11-15"
 heroImage: "/images/wood-texture.jpg"
 tags: ["materials", "agarwood", "history", "guide"]

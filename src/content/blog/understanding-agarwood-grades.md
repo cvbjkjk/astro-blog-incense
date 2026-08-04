@@ -1,6 +1,6 @@
 ---
 title: "Understanding Agarwood Grades and Quality"
-description: "Learn how to evaluate agarwood quality - from wild-harvested to cultivated, from traditional grading systems to regional characteristics and practical price indicators."
+description: "Learn how to evaluate agarwood quality — from wild-harvested to cultivated, traditional grading systems to regional characteristics and price indicators."
 pubDate: "2025-01-05"
 heroImage: "/images/incense-sticks.jpg"
 tags: ["materials", "agarwood", "guide", "reference"]

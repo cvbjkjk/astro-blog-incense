@@ -1,6 +1,6 @@
 ---
 title: "The Art of Blending Incense: Hehe Xiang"
-description: "Explore the principles of hehe incense blending - the jun-chen system borrowed from classical Chinese medicine that has guided perfumers for centuries in creating harmonious compositions."
+description: "Explore the principles of hehe incense blending — the jun-chen system from classical Chinese medicine that guides perfumers in creating harmonious compositions."
 pubDate: "2024-12-01"
 heroImage: "/images/frankincense-resin.jpg"
 tags: ["blending", "culture", "traditions", "guide"]
