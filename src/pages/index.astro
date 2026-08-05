@@ -110,8 +110,8 @@ const materials = [
         <h2 class="section-title">Latest Writings</h2>
         <div class="latest__grid">
           {posts.map((post, i) => (
-            <a href={`/blog/${post.id}/`} class="post-card" style={`--reveal-delay: ${i * 0.1}s`}>
-              <article>
+            <article class="post-card" style={`--reveal-delay: ${i * 0.1}s`}>
+              <a href={`/blog/${post.id}/`} class="post-card__link" aria-label={post.data.title}>
                 <div class="post-card__image">
                   {post.data.heroImage ? (
                     <img src={post.data.heroImage} alt="" loading="lazy" />
@@ -121,17 +121,19 @@ const materials = [
                     </div>
                   )}
                 </div>
-                <div class="post-card__body">
-                  <time class="post-card__date">
-                    <FormattedDate date={post.data.pubDate} />
-                  </time>
-                  <h3 class="post-card__title">{post.data.title}</h3>
-                  {post.data.description && (
-                    <p class="post-card__desc">{post.data.description}</p>
-                  )}
-                </div>
-              </article>
-            </a>
+              </a>
+              <div class="post-card__body">
+                <time class="post-card__date">
+                  <FormattedDate date={post.data.pubDate} />
+                </time>
+                <h3 class="post-card__title">
+                  <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                </h3>
+                {post.data.description && (
+                  <p class="post-card__desc">{post.data.description}</p>
+                )}
+              </div>
+            </article>
           ))}
         </div>
         <div class="latest__action">
@@ -407,7 +409,6 @@ const materials = [
 
   .post-card {
     display: block;
-    text-decoration: none;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-surface);
@@ -420,6 +421,11 @@ const materials = [
   .post-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+  }
+
+  .post-card__link {
+    display: block;
+    text-decoration: none;
   }
 
   .post-card__image {
@@ -469,7 +475,13 @@ const materials = [
     color: var(--color-text);
   }
 
-  .post-card:hover .post-card__title {
+  .post-card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .post-card:hover .post-card__title a {
     color: var(--color-accent);
   }
 
