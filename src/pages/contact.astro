@@ -15,10 +15,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Whether you have questions about incense materials, want to share your own
           knowledge, or are interested in collaboration — I would be glad to hear from you.
         </p>
-        <a href="mailto:hello@naturalincense.de" class="contact__email">
-          hello@naturalincense.de
-        </a>
+
+        <form id="contact-form" class="contact__form" action="https://formsubmit.co/hello@naturalincense.de" method="POST">
+          <input type="hidden" name="_subject" value="New message from naturalincense.de" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name" />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="6" placeholder="How can I help?"></textarea>
+          </div>
+
+          <button type="submit" class="contact__submit">
+            Send Message
+          </button>
+          <p class="contact__form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+
         <p class="contact__note">
+          Or write directly to <a href="mailto:hello@naturalincense.de" class="contact__inline-mail">hello@naturalincense.de</a>.
           I try to respond within a few days. Please note that I cannot offer personal
           incense consultations or material appraisals.
         </p>
@@ -26,6 +52,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Sending…';
+    status.className = 'contact__form-status is-sending';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        status.textContent = 'Thanks — your message has been sent. I will get back to you soon.';
+        status.className = 'contact__form-status is-success';
+        form.reset();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        status.textContent = data?.message || 'Something went wrong. Please try again or email me directly.';
+        status.className = 'contact__form-status is-error';
+      }
+    } catch (err) {
+      status.textContent = 'Network error — please try again or email me directly.';
+      status.className = 'contact__form-status is-error';
+    }
+  });
+</script>
 
 <style>
   .contact {
@@ -58,22 +115,93 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     max-width: 42ch;
   }
 
-  .contact__email {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--color-accent);
-    padding: 14px 32px;
-    border: 1px solid var(--color-accent);
-    border-radius: var(--radius-md);
-    transition: all 0.25s var(--ease-out);
-    text-decoration: none;
+  .contact__form {
+    text-align: left;
+    margin-bottom: 8px;
   }
 
-  .contact__email:hover {
-    background: var(--color-accent);
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    box-sizing: border-box;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-subtle);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  .contact__submit {
+    width: 100%;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--font-sans);
     color: #fff;
+    background: var(--color-accent);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out);
+  }
+
+  .contact__submit:hover {
+    background: var(--color-accent-hover);
     transform: translateY(-2px);
+  }
+
+  .contact__form-status {
+    font-size: 13px;
+    margin-top: 16px;
+    line-height: 1.5;
+    min-height: 1.5em;
+  }
+
+  .contact__form-status.is-sending {
+    color: var(--color-text-secondary);
+  }
+
+  .contact__form-status.is-success {
+    color: var(--color-forest);
+  }
+
+  .contact__form-status.is-error {
+    color: #b3261e;
+  }
+
+  .contact__inline-mail {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .contact__note {
