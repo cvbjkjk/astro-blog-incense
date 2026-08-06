@@ -5,7 +5,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION } from '../../consts';
 
-const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blogDe')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const materials = [
   { name: "Agarholz", latin: "Aquilaria sinensis", desc: "Das kostbarste Räucherholz der Welt — dunkel, harzig und tief.", image: "/images/material-agarwood.jpg" },
   { name: "Sandelholz", latin: "Santalum album", desc: "Cremig, warm und süß — der klassische Einstieg.", image: "/images/material-sandalwood.jpg" },
