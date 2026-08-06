@@ -5,7 +5,6 @@ import { NAV_ITEMS, SITE_TITLE } from '../consts';
 <header class="header">
   <nav class="container header__nav">
     <a href="/" class="header__logo">
-      <span class="header__logo-mark">〈</span>
       <span class="header__logo-text">{SITE_TITLE}</span>
     </a>
     <ul class="header__links">
@@ -23,7 +22,7 @@ import { NAV_ITEMS, SITE_TITLE } from '../consts';
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    background: color-mix(in srgb, var(--color-bg) 88%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -33,30 +32,24 @@ import { NAV_ITEMS, SITE_TITLE } from '../consts';
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 72px;
   }
 
   .header__logo {
-    display: flex;
-    align-items: center;
-    gap: 6px;
     text-decoration: none;
     color: var(--color-text);
-    font-weight: 550;
-    font-size: 18px;
-    letter-spacing: -0.02em;
-  }
-
-  .header__logo-mark {
-    color: var(--color-accent);
-    font-size: 20px;
-    font-family: var(--font-mono);
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .header__links {
     display: flex;
     align-items: center;
     gap: 32px;
+    list-style: none;
   }
 
   .header__link {
@@ -69,12 +62,16 @@ import { NAV_ITEMS, SITE_TITLE } from '../consts';
   }
 
   .header__link:hover {
-    color: var(--color-text);
+    color: var(--color-accent);
   }
 
   @media (max-width: 640px) {
     .header__links {
-      gap: 20px;
+      gap: 18px;
+    }
+
+    .header__logo {
+      font-size: 20px;
     }
   }
 </style>

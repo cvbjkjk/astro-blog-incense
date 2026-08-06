@@ -40,25 +40,51 @@ const materials = [
   title="Chinese Incense — History, Materials & Culture | naturalincense.de"
   description={SITE_DESCRIPTION}
 >
+  <!-- Announcement Banner -->
+  <div class="announcement">
+    <div class="container">
+      <p class="announcement__text">Botanicals only — pure plant-based incense, hand rolled with intention</p>
+    </div>
+  </div>
+
   <!-- Hero -->
   <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__content">
+    <div class="hero__visual">
+      <img src="/images/hero-home.jpg" alt="Incense smoke in a quiet meditation space" />
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
         <p class="hero__eyebrow">Journal of Chinese Incense</p>
         <h1 class="hero__title">The Art of <em class="hero__em">Incense</em></h1>
         <p class="hero__sub">
-          A curated exploration of China's incense heritage - from wild-harvested agarwood to century-old blending traditions that shaped a culture.
+          A curated exploration of China's incense heritage — from wild-harvested agarwood to century-old blending traditions that shaped a culture.
         </p>
         <div class="hero__actions">
           <a href="/blog" class="btn btn-primary">Explore the Journal</a>
-          <a href="/about" class="btn btn-ghost">About This Blog</a>
+          <a href="/materials" class="btn btn-ghost">Discover Materials</a>
         </div>
       </div>
-      <div class="hero__visual">
-        <div class="hero__image">
-          <img src="/images/hero-home.jpg" alt="Incense smoke in a quiet meditation space" />
-          <div class="hero__vignette"></div>
-        </div>
+    </div>
+  </section>
+
+  <!-- Brand Pillars -->
+  <section class="pillars">
+    <div class="container">
+      <div class="pillars__grid">
+        <article class="pillar">
+          <div class="pillar__icon">🌿</div>
+          <h3 class="pillar__title">Botanicals Only</h3>
+          <p class="pillar__desc">Purely plant-based materials — no synthetic fillers, no artificial perfume oils.</p>
+        </article>
+        <article class="pillar">
+          <div class="pillar__icon">🤲</div>
+          <h3 class="pillar__title">Hand Rolled</h3>
+          <p class="pillar__desc">Artisanal craft in every stick, following traditions refined over centuries.</p>
+        </article>
+        <article class="pillar">
+          <div class="pillar__icon">🌫️</div>
+          <h3 class="pillar__title">Ingredient Honest</h3>
+          <p class="pillar__desc">What you see is what you breathe — full transparency in every blend.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -96,7 +122,7 @@ const materials = [
     <div class="container">
       <div class="philosophy__card">
         <blockquote class="philosophy__quote">
-          <p>Incense is not merely fragrance - it is a bridge between the material and the spiritual, a practice that cultivates stillness in a restless world.</p>
+          <p>Incense is not merely fragrance — it is a bridge between the material and the spiritual, a practice that cultivates stillness in a restless world.</p>
         </blockquote>
         <p class="philosophy__attribution">From the ancient <cite>Xiang Pu</cite> (Incense Manuals) of the Song Dynasty</p>
       </div>
@@ -142,63 +168,127 @@ const materials = [
       </div>
     </section>
   )}
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-label__line"></span>
+        <span class="section-label__text">Good to Know</span>
+      </div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq__list">
+        <details class="faq__item">
+          <summary class="faq__question">What makes Chinese incense different from other traditions?</summary>
+          <div class="faq__answer">
+            <p>Chinese incense emphasizes whole botanicals and resins rather than synthetic fragrances. Blends follow the jun-chen (sovereign-minister) principle from classical medicine, where each ingredient plays a defined role — anchoring, supporting, or harmonizing the composition.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">How do I burn incense safely?</summary>
+          <div class="faq__answer">
+            <p>Always burn in a ventilated room, keep the burner at arm's length, use a stable heat-safe holder, and never leave burning incense unattended. A small tray or ash-catcher underneath keeps surfaces clean.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Are there any hidden ingredients?</summary>
+          <div class="faq__answer">
+            <p>Never. Traditional Chinese incense uses ground botanicals, resins, and a natural tree-bark binder — no charcoal, no synthetic perfume oils. What you see is what you breathe.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Which materials should a beginner start with?</summary>
+          <div class="faq__answer">
+            <p>Sandalwood is the classic starting point — warm, steady, and forgiving. Agarwood offers a deeper, more complex experience for when you're ready. Explore our <a href="/materials">materials directory</a> to learn more.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  /* ---- Hero ---- */
-  .hero {
-    padding: 40px 0 80px;
-    min-height: 80dvh;
-    display: flex;
-    align-items: center;
+  /* ---- Announcement Banner ---- */
+  .announcement {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
   }
 
-  .hero__inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+  .announcement__text {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    margin: 0;
+    max-width: none;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    min-height: 78dvh;
+    display: flex;
     align-items: center;
+    overflow: hidden;
+  }
+
+  .hero__visual {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(28, 38, 32, 0.35) 0%, rgba(28, 38, 32, 0.15) 40%, rgba(247, 236, 212, 0.9) 100%);
   }
 
   .hero__content {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
+    padding-top: 40vh;
+    color: #fff;
   }
 
   .hero__eyebrow {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--color-accent);
+    color: #f2e4c8;
     letter-spacing: 0.15em;
     text-transform: uppercase;
   }
 
   .hero__title {
-    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-size: clamp(2.8rem, 6vw, 5rem);
     line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 500;
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
   }
 
   .hero__em {
     font-style: italic;
     font-weight: 400;
-    color: var(--color-forest);
+    color: #f2e4c8;
     font-size: 1.05em;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .hero__em {
-      color: var(--color-forest-light);
-    }
   }
 
   .hero__sub {
     font-size: 16px;
     line-height: 1.7;
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.92);
     max-width: 50ch;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   }
 
   .hero__actions {
@@ -207,40 +297,65 @@ const materials = [
     margin-top: 8px;
   }
 
-  .hero__visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .hero .btn-ghost {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
   }
 
-  .hero__image {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    position: relative;
+  .hero .btn-ghost:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(0, 0, 0, 0.25);
   }
 
-  .hero__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  @media (max-width: 640px) {
+    .hero__content {
+      padding-top: 30vh;
+    }
   }
 
-  .hero__vignette {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
-    border-radius: inherit;
+  /* ---- Brand Pillars ---- */
+  .pillars {
+    padding: 64px 0;
   }
 
-  .hero__image-credit {
-    position: absolute;
-    bottom: 12px;
-    right: 16px;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.4);
-    font-family: var(--font-mono);
+  .pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .pillar {
+    text-align: center;
+    padding: 24px 16px;
+  }
+
+  .pillar__icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .pillar__title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: var(--color-text);
+  }
+
+  .pillar__desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 auto;
+    max-width: 30ch;
+  }
+
+  @media (max-width: 768px) {
+    .pillars__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
   }
 
   /* ---- Section Shared ---- */
@@ -496,6 +611,72 @@ const materials = [
     margin-top: 48px;
   }
 
+  /* ---- FAQ ---- */
+  .faq {
+    padding: 64px 0 96px;
+  }
+
+  .faq__list {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq__item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq__question {
+    padding: 20px 8px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__question::after {
+    content: "+";
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-accent);
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .faq__item[open] .faq__question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq__question:hover {
+    color: var(--color-accent);
+  }
+
+  .faq__answer {
+    padding: 0 8px 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 62ch;
+  }
+
+  .faq__answer a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   /* ---- Responsive ---- */
   @media (max-width: 1024px) {
     .materials__grid {
@@ -509,25 +690,12 @@ const materials = [
 
   @media (max-width: 768px) {
     .hero {
-      padding: 40px 0 60px;
-      min-height: auto;
-    }
-
-    .hero__inner {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .hero__visual {
-      order: -1;
-    }
-
-    .hero__image-placeholder {
-      aspect-ratio: 16 / 10;
+      min-height: 70dvh;
     }
 
     .hero__actions {
       flex-direction: column;
+      align-items: flex-start;
     }
 
     .philosophy__card {

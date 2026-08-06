@@ -1,24 +1,28 @@
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/geist-mono";
+@import "@fontsource/dm-serif-display";
+@import "@fontsource/inter";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
 
 :root {
-  --color-bg: #faf9f6;
-  --color-surface: #ffffff;
-  --color-surface-subtle: #f3f2ed;
-  --color-border: #e5e4dd;
-  --color-text: #1a1a18;
-  --color-text-secondary: #6b6a62;
-  --color-text-tertiary: #9c9b92;
-  --color-accent: #b8860b;
-  --color-accent-hover: #9a7209;
-  --color-accent-subtle: #fef7e6;
-  --color-forest: #2d5a3d;
-  --color-forest-light: #4a7c5a;
-  --color-amber: #b8860b;
-  --color-amber-light: #d4a545;
+  /* Incenook-inspired palette: warm cream + forest green */
+  --color-bg: #f7ecd4;
+  --color-surface: #fff9ef;
+  --color-surface-subtle: #f2e4c8;
+  --color-border: #e2d2b8;
+  --color-text: #4a4037;
+  --color-text-secondary: #6b5f52;
+  --color-text-tertiary: #9c8b76;
+  --color-accent: #3e6a52;
+  --color-accent-hover: #2f5f4a;
+  --color-accent-subtle: #e8efe9;
+  --color-forest: #3e6a52;
+  --color-forest-light: #5a8a6c;
+  --color-amber: #6b461a;
+  --color-amber-light: #8a6a3a;
 
-  --font-sans: "Geist Variable", system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", monospace;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -31,29 +35,31 @@
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 
-  --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
-  --shadow-md: 0 4px 12px rgba(26, 26, 24, 0.06);
-  --shadow-lg: 0 8px 32px rgba(26, 26, 24, 0.08);
+  --shadow-sm: 0 1px 2px rgba(74, 64, 55, 0.05);
+  --shadow-md: 0 4px 12px rgba(74, 64, 55, 0.08);
+  --shadow-lg: 0 8px 32px rgba(74, 64, 55, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0f1a12;
-    --color-surface: #1a2d1e;
-    --color-surface-subtle: #152618;
-    --color-border: #2a3d2e;
-    --color-text: #e8e3da;
-    --color-text-secondary: #9ca89e;
-    --color-text-tertiary: #6a7e6e;
-    --color-accent: #d4a545;
-    --color-accent-hover: #c49835;
-    --color-accent-subtle: #1e2d1a;
-    --color-forest: #4a7c5a;
-    --color-forest-light: #6a9c7a;
+    --color-bg: #1c2620;
+    --color-surface: #243128;
+    --color-surface-subtle: #1e2a22;
+    --color-border: #35443a;
+    --color-text: #ece4d6;
+    --color-text-secondary: #a89c8a;
+    --color-text-tertiary: #7a6f5e;
+    --color-accent: #7aa88c;
+    --color-accent-hover: #8fbc9f;
+    --color-accent-subtle: #2a3a30;
+    --color-forest: #7aa88c;
+    --color-forest-light: #9cc4a9;
+    --color-amber: #d4a545;
+    --color-amber-light: #e0b867;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.45);
   }
 }
 
@@ -103,10 +109,10 @@ a:hover {
 
 /* ---- Typography ---- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
-  font-weight: 550;
+  font-family: var(--font-serif);
+  font-weight: 400;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   color: var(--color-text);
 }
 
