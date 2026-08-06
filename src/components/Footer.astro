@@ -1,5 +1,11 @@
 ---
 import { SITE_TITLE } from '../consts';
+import { getLangFromUrl, useTranslations } from '../i18n/ui';
+
+const url = new URL(Astro.url.pathname, Astro.site);
+const lang = getLangFromUrl(url);
+const t = useTranslations(lang);
+const p = (path: string) => (lang === "de" ? `/de${path}` : path);
 ---
 
 <footer class="footer">
@@ -8,32 +14,32 @@ import { SITE_TITLE } from '../consts';
       <div class="footer__brand">
         <span class="footer__logo">{SITE_TITLE}</span>
         <p class="footer__tagline">
-          Exploring the art, history, and materials of Chinese incense culture — from precious agarwood to ancient blending traditions.
+          {t("footer.tagline")}
         </p>
       </div>
       <div class="footer__col">
-        <h4 class="footer__heading">Explore</h4>
+        <h4 class="footer__heading">{t("footer.explore")}</h4>
         <nav class="footer__nav">
-          <a href="/blog">Journal</a>
-          <a href="/materials">Materials</a>
-          <a href="/tags">Topics</a>
-          <a href="/about">About</a>
+          <a href={p("/blog/")}>{t("nav.journal")}</a>
+          <a href={p("/materials/")}>{t("nav.materials")}</a>
+          <a href={p("/xiang-wan/")}>{t("nav.pellets")}</a>
+          <a href={p("/about/")}>{t("nav.about")}</a>
         </nav>
       </div>
       <div class="footer__col">
-        <h4 class="footer__heading">Connect</h4>
+        <h4 class="footer__heading">{t("footer.connect")}</h4>
         <nav class="footer__nav">
-          <a href="/contact">Contact</a>
-          <a href="/privacy">Privacy</a>
+          <a href={p("/contact/")}>{t("nav.contact")}</a>
+          <a href={p("/privacy/")}>Privacy</a>
           <a href="mailto:hello@naturalincense.de">hello@naturalincense.de</a>
         </nav>
       </div>
     </div>
     <div class="footer__bottom">
       <p class="footer__copyright">
-        &copy; {new Date().getFullYear()} {SITE_TITLE}. All rights reserved.
+        &copy; {new Date().getFullYear()} {SITE_TITLE}. {t("footer.rights")}
       </p>
-      <p class="footer__crafted">Hand rolled with intention</p>
+      <p class="footer__crafted">{t("footer.crafted")}</p>
     </div>
   </div>
 </footer>

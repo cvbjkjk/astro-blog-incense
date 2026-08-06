@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl, useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const url = new URL(currentPath, Astro.site);
+const lang = getLangFromUrl(url);
+const t = useTranslations(lang);
+const otherLang: Locale = lang === "en" ? "de" : "en";
+// Strip /de prefix if present, then add it if target is German
+const clean = currentPath.replace(/^\/de(?=\/|$)/, "") || "/";
+const otherUrl = otherLang === "de" ? `/de${clean === "/" ? "" : clean}` : clean;
+---
+
+<a href={otherUrl} class="lang-switcher" aria-label={`Switch to ${t("lang.switch")}`}>
+  <span class="lang-switcher__icon" aria-hidden="true">🌐</span>
+  <span class="lang-switcher__text">{t("lang.switch")}</span>
+</a>
+
+<style>
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 450;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .lang-switcher:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .lang-switcher__icon {
+    font-size: 14px;
+  }
+</style>

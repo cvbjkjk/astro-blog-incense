@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+
+const materials = [
+  { name: "Agarholz", latin: "Aquilaria sinensis", aka: "Chenxiang (沉香)", category: "Hölzer", desc: "Das kostbarste Räucherholz der Erde — dunkel, harzig und tief. Entsteht nur in verletzten Bäumen.", note: "Warm, süß-balsamisch mit komplexer harziger Tiefe" },
+  { name: "Sandelholz", latin: "Santalum album", aka: "Tanxiang (檀香)", category: "Hölzer", desc: "Cremig, warm und süß — der klassische Einstieg in die Räucherpraxis.", note: "Cremig, warm, süß mit subtiler milchiger Glätte" },
+  { name: "Weihrauch", latin: "Boswellia sacra", aka: "Ruxiang (乳香)", category: "Harze", desc: "Ein Harz mit zitrusartiger Kiefernöffnung und warmer balsamischer Tiefe.", note: "Zitrus-Kiefern-Öffnung mit warmer balsamischer Tiefe" },
+  { name: "Gewürznelke", latin: "Syzygium aromaticum", aka: "Dingxiang (丁香)", category: "Gewürze", desc: "Scharf, wärmend und betäubend mit süßen Untertönen — ein kräftiger Charakter.", note: "Scharf, wärmend, betäubend mit süßen Untertönen" },
+  { name: "Kassia", latin: "Cinnamomum cassia", aka: "Rougui (肉桂)", category: "Gewürze", desc: "Süßes, holziges Zimt mit einer durchdringenden Schärfe.", note: "Süß, holzig mit einer durchdringenden Note" },
+  { name: "Patschuli", latin: "Pogostemon cablin", aka: "Guanghuoxiang (广藿香)", category: "Kräuter", desc: "Erdig, moschusartig und weinartig mit tiefer Bittersüße.", note: "Erdig, moschusartig, weinartig mit tiefer Bittersüße" },
+  { name: "Kampfer", latin: "Cinnamomum camphora", aka: "Zhangnao (樟脑)", category: "Harze", desc: "Kühlend, medizinisch und scharf mit kampferartigem Biss.", note: "Kühlend, medizinisch, scharf" },
+  { name: "Nardenwurzel", latin: "Nardostachys jatamansi", aka: "Gansong (甘松)", category: "Kräuter", desc: "Erdig, animalisch und moschusartig mit süß-holzigen Untertönen.", note: "Erdig, animalisch, moschusartig mit süß-holzigen Untertönen" },
+  { name: "Borneol", latin: "Dryobalanops aromatica", aka: "Bingpian (冰片)", category: "Harze", desc: "Kühl, durchdringend frisch mit einem minzig-kampferartigen Auftrieb.", note: "Kühl, durchdringend frisch mit minzigem Auftrieb" },
+  { name: "Süßholz", latin: "Glycyrrhiza uralensis", aka: "Gancao (甘草)", category: "Kräuter", desc: "Süß, erdig und umhüllend mit einem leichten Menthol-Finish.", note: "Süß, erdig, umhüllend mit Menthol-Finish" },
+];
+
+const categories = ["Alle", "Hölzer", "Harze", "Kräuter", "Gewürze"];
+const t = { label: "Enzyklopädie", title: "Räuchermaterialien", sub: "Ein Verzeichnis der Rohstoffe, die in der traditionellen chinesischen Räucherkunst verwendet werden." };
+---
+
+<Layout
+  title="Räuchermaterialien — Verzeichnis chinesischer Rohstoffe | naturalincense.de"
+  description="Ein Verzeichnis der Rohstoffe der traditionellen chinesischen Räucherkunst: Agarholz, Sandelholz, Weihrauch und mehr — mit Eigenschaften und Duftprofilen."
+>
+  <section class="materials-hero">
+    <div class="container">
+      <p class="materials-hero__label">{t.label}</p>
+      <h1 class="materials-hero__title">{t.title}</h1>
+      <p class="materials-hero__sub">{t.sub}</p>
+    </div>
+  </section>
+
+  <section class="materials">
+    <div class="container">
+      <div class="materials__filters">
+        {categories.map((c) => <button class="materials__filter is-active" data-filter={c}>{c}</button>)}
+      </div>
+      <div class="materials__grid">
+        {materials.map((m, i) => (
+          <article class="material-card" data-category={m.category}>
+            <div class="material-card__body">
+              <h2 class="material-card__name">{m.name}</h2>
+              <p class="material-card__latin">{m.latin} · {m.aka}</p>
+              <p class="material-card__category">{m.category}</p>
+              <p class="material-card__desc">{m.desc}</p>
+              <p class="material-card__note">DUFTPROFIL: {m.note}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .materials-hero { padding: 64px 0 48px; }
+  .materials-hero__label { font-family: var(--font-mono); font-size: 12px; color: var(--color-accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+  .materials-hero__title { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 16px; }
+  .materials-hero__sub { font-size: 16px; color: var(--color-text-secondary); max-width: 50ch; }
+  .materials { padding-bottom: 96px; }
+  .materials__filters { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+  .materials__filter { padding: 8px 20px; font-size: 13px; font-weight: 500; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 999px; cursor: pointer; transition: all 0.2s ease; }
+  .materials__filter.is-active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .materials__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .material-card { padding: 28px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); transition: transform 0.3s var(--ease-out); }
+  .material-card:hover { transform: translateY(-4px); }
+  .material-card__name { font-size: 20px; margin-bottom: 6px; }
+  .material-card__latin { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; color: var(--color-text-tertiary); margin-bottom: 10px; }
+  .material-card__category { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); border: 1px solid var(--color-accent); border-radius: 999px; padding: 3px 10px; margin-bottom: 14px; }
+  .material-card__desc { font-size: 14px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 14px; }
+  .material-card__note { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-tertiary); }
+  @media (max-width: 768px) { .materials__grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  (() => {
+    const filters = [...document.querySelectorAll(".materials__filter")];
+    const cards = [...document.querySelectorAll(".material-card")];
+    filters.forEach((f) => {
+      f.addEventListener("click", () => {
+        filters.forEach((x) => x.classList.remove("is-active"));
+        f.classList.add("is-active");
+        const cat = f.dataset.filter;
+        cards.forEach((c) => {
+          c.style.display = cat === "Alle" || c.dataset.category === cat ? "" : "none";
+        });
+      });
+    });
+  })();
+</script>

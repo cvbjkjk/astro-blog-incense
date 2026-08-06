@@ -1,0 +1,66 @@
+---
+import Layout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../../components/FormattedDate.astro';
+
+// German blog index: shows German articles from blogDe collection
+const posts = (await getCollection('blogDe')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const t = {
+  title: "Journal",
+  sub: "Notizen über Räucherwerk, Materialien und die Traditionen, die sie prägen.",
+};
+---
+
+<Layout title={`Journal - naturalincense.de`} description={t.sub}>
+  <section class="journal-hero">
+    <div class="container">
+      <h1 class="journal-hero__title">{t.title}</h1>
+      <p class="journal-hero__sub">{t.sub}</p>
+    </div>
+  </section>
+
+  <section class="post-list">
+    <div class="container">
+      <div class="post-list__grid">
+        {posts.map((post) => (
+          <article class="post-list__card">
+            <a href={`/de/blog/${post.id}/`} class="post-list__link" aria-label={post.data.title}>
+              <div class="post-list__image">
+                {post.data.heroImage ? (
+                  <img src={post.data.heroImage} alt="" loading="lazy" />
+                ) : (
+                  <div class="post-list__placeholder"><span>INCENSE</span></div>
+                )}
+              </div>
+            </a>
+            <div class="post-list__body">
+              <time class="post-list__date"><FormattedDate date={post.data.pubDate} /></time>
+              <h2 class="post-list__title"><a href={`/de/blog/${post.id}/`}>{post.data.title}</a></h2>
+              {post.data.description && <p class="post-list__desc">{post.data.description}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .journal-hero { padding: 64px 0 48px; }
+  .journal-hero__title { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 12px; }
+  .journal-hero__sub { font-size: 16px; color: var(--color-text-secondary); max-width: 45ch; }
+  .post-list { padding-bottom: 96px; }
+  .post-list__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+  .post-list__card { border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border); transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out); }
+  .post-list__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .post-list__image { aspect-ratio: 16/9; overflow: hidden; }
+  .post-list__image img { width: 100%; height: 100%; object-fit: cover; }
+  .post-list__placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--color-surface-subtle); color: var(--color-text-tertiary); font-family: var(--font-serif); letter-spacing: 0.1em; }
+  .post-list__body { padding: 16px 18px 20px; }
+  .post-list__date { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); }
+  .post-list__title { font-size: 16px; margin: 6px 0 8px; line-height: 1.35; }
+  .post-list__title a { color: var(--color-text); text-decoration: none; transition: color 0.2s ease; }
+  .post-list__title a:hover { color: var(--color-accent); }
+  .post-list__desc { font-size: 13px; line-height: 1.5; color: var(--color-text-secondary); }
+  @media (max-width: 640px) { .post-list__grid { grid-template-columns: 1fr; } }
+</style>

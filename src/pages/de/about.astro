@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+---
+
+<Layout
+  title="Über uns — Über das Journal | naturalincense.de"
+  description="Über das Journal der chinesischen Räucherkultur — seine Geschichte, Materialien und lebendige Tradition."
+>
+  <section class="about-hero">
+    <div class="container">
+      <h1 class="about-hero__title">Über uns</h1>
+      <p class="about-hero__sub">Eine Reise in die Welt des chinesischen Räucherns — seine Geschichte, Materialien und lebendige Tradition.</p>
+    </div>
+  </section>
+
+  <section class="about-body">
+    <div class="container">
+      <div class="prose">
+        <p>
+          Dieses Journal erkundet die reiche Tradition der chinesischen Räucherkultur
+          (<em>Xiang Dao</em> — der Weg des Dufts). Von den harzdurchtränkten
+          Agarholz-Wäldern Südchinas bis zu den Gelehrtenstudios der
+          Song-Dynastie hat Räuchern Meditation, Medizin, Poesie und
+          den Alltag seit Jahrtausenden geprägt.
+        </p>
+        <p>
+          Hier findest du tiefe Einblicke in Rohstoffe, Profile traditioneller
+          Mischungen, historischen Kontext und praktische Anleitungen für
+          die eigene Räucherreise. Jeder Artikel stützt sich auf authentische
+          Quellen — klassische Räucherhandbücher, Feldforschung und Gespräche
+          mit zeitgenössischen Praktizierenden.
+        </p>
+        <h2>Was ist chinesisches Räuchern?</h2>
+        <p>
+          Anders als einfache Duftkerzen oder kommerzielle Parfums ist
+          chinesisches Räuchern eine Disziplin. Traditionelles Mischen folgt
+          Prinzipien des Gleichgewichts (<em>Jun Chen</em>) aus der klassischen Medizin:
+          Jede Zutat dient als Souverän, Minister, Assistent oder Führer.
+          Die feinsten Materialien, wie <em>Chenxiang</em> (Agarholz),
+          reifen jahrzehntelang, bevor sie ihre volle Tiefe erreichen.
+        </p>
+        <h2>Über den Autor</h2>
+        <p>
+          Ein Schüler der Räucherkultur, zwischen Shanghai und Yunnan zu Hause,
+          mit Fokus auf wild geerntete Materialien und vormoderne Misstexte.
+          Wenn nicht gerade Holzkohle brennt, fotografiere ich rohe
+          Räuchermaterialien und dokumentiere die Bauern und Sammler,
+          die diese Traditionen erhalten.
+        </p>
+        <p>
+          Kontakt: <a href="mailto:hello@naturalincense.de">hello@naturalincense.de</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-hero { padding: 64px 0 48px; }
+  .about-hero__title { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 16px; }
+  .about-hero__sub { font-size: 16px; color: var(--color-text-secondary); max-width: 50ch; }
+  .about-body { padding-bottom: 96px; }
+  .prose { max-width: 680px; font-size: 16px; line-height: 1.85; color: var(--color-text-secondary); }
+  .prose p { margin-bottom: 1.2em; }
+  .prose h2 { font-size: 1.4rem; margin: 1.6em 0 0.6em; color: var(--color-text); }
+  .prose a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+</style>

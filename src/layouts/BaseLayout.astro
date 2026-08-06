@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl } from '../i18n/ui';
 
 export type Props = {
   title: string;
@@ -11,12 +11,22 @@ export type Props = {
 };
 
 const { title, description, ogImage } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const isDe = lang === "de";
+// The alternate (other-language) version of the current path
+const alternateHref = (path: string) => {
+  const clean = path.replace(/^\/de(?=\/|$)/, "") || "/";
+  return isDe ? `https://naturalincense.de${clean}` : `https://naturalincense.de/de${clean === "/" ? "" : clean}`;
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <BaseHead {title} {description} ogImage={ogImage} />
+    <link rel="alternate" hreflang={isDe ? "en" : "de"} href={alternateHref(Astro.url.pathname)} />
+    <link rel="alternate" hreflang={lang} href={`https://naturalincense.de${Astro.url.pathname}`} />
+    <link rel="alternate" hreflang="x-default" href="https://naturalincense.de/" />
   </head>
   <body>
     <Header />
