@@ -1,0 +1,424 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+import { products } from '../../lib/xiangwan-products';
+
+export function getStaticPaths() {
+  return products.map((product) => {
+    const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+    return {
+      params: { slug: product.slug },
+      props: { product, related },
+    };
+  });
+}
+
+const { product, related } = Astro.props;
+const images = [product.image, ...(product.extraImages || [])];
+---
+
+<Layout
+  title={`${product.name} — Hand-Rolled Incense Pellets | naturalincense.de`}
+  description={product.desc}
+  ogImage={product.image}
+>
+  <!-- JSON-LD Product schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.desc,
+    "image": product.image,
+    "brand": { "@type": "Brand", "name": "INCENSE" },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "EUR",
+      "price": product.price || "0",
+      "url": `https://naturalincense.de/xiang-wan/${product.slug}/`
+    }
+  })} />
+
+  <section class="product">
+    <div class="container product__layout">
+      <!-- Gallery -->
+      <div class="product__gallery">
+        <div class="product__main-image">
+          <img src={product.image} alt={product.name} />
+        </div>
+        {images.length > 1 && (
+          <div class="product__thumbs">
+            {images.map((img) => (
+              <button class="product__thumb is-active" aria-label="View image">
+                <img src={img} alt="" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Info -->
+      <div class="product__info">
+        <p class="product__type">{product.type}</p>
+        <h1 class="product__name">{product.name}</h1>
+        <p class="product__notes">{product.notes}</p>
+        <p class="product__desc">{product.desc}</p>
+
+        <div class="product__meta">
+          <div class="product__meta-item">
+            <span class="product__meta-label">Formula</span>
+            <span class="product__meta-value">{product.formula}</span>
+          </div>
+          <div class="product__meta-item">
+            <span class="product__meta-label">For use with</span>
+            <span class="product__meta-value">Electric incense warmer with temperature control</span>
+          </div>
+          <div class="product__meta-item">
+            <span class="product__meta-label">Heating</span>
+            <span class="product__meta-value">Start 100–120&deg;C · rise to 180–200&deg;C</span>
+          </div>
+        </div>
+
+        <a href="/contact" class="product__cta">Enquire about this pellet</a>
+        <p class="product__cta-note">Made to order in small batches — reach out for availability.</p>
+
+        <details class="product__accordion">
+          <summary class="product__accordion-title">Why I Made This</summary>
+          <div class="product__accordion-body">
+            <p>Every pellet is hand-rolled from ground botanicals and resins — no charcoal, no synthetic perfume oils. Small batches, tested and re-blended since October, because a formula is never finished, only refined.</p>
+          </div>
+        </details>
+        <details class="product__accordion">
+          <summary class="product__accordion-title">How to heat</summary>
+          <div class="product__accordion-body">
+            <p>Place on an electric warmer at 100–120&deg;C and let it bloom. As the aroma fades, raise the temperature gradually toward 180–200&deg;C. The top, middle, and base notes unfold at different stages. Two pellets at once for a stronger presence; break and flatten for a lighter one.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story section (incenook-style brand narrative) -->
+  <section class="story">
+    <div class="container">
+      <div class="story__inner">
+        <h2 class="story__title">Hand Rolled. Small Batches. Nothing Hidden.</h2>
+        <div class="story__body">
+          <p>These pellets began as samples in early October — re-blended, re-tested, refined by hand. Incense is not the main work here, so only a few formulas exist, and each one earns its place.</p>
+          <p><strong>Qing Lin Sui</strong> is new, with a striking coolness. <strong>Spring Moon Butterfly</strong> and <strong>Han Jianning Palace Incense</strong> follow their classical formulas closely. <strong>Wild Orchid of the Wilderness</strong> is an original creation; <strong>Princess Shouyang Plum Blossom</strong> and <strong>Xun Ling's Ten-Mile Fragrance</strong> honor the originals. <strong>Lili Marleen</strong> is my own blend, dedicated to Marlene Dietrich — a legend impossible to copy.</p>
+          <p>The pellets were resized smaller after the first batch — your feedback, honored. They pair best with a temperature-controlled electric warmer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="related">
+    <div class="container">
+      <h2 class="related__title">Other Pellets</h2>
+      <div class="related__grid">
+        {related.map((p) => (
+          <a href={`/xiang-wan/${p.slug}/`} class="related__card">
+            <div class="related__image">
+              <img src={p.image} alt={p.name} loading="lazy" />
+            </div>
+            <div class="related__body">
+              <h3 class="related__name">{p.name}</h3>
+              <p class="related__notes">{p.notes}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .product {
+    padding: 48px 0 64px;
+  }
+
+  .product__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .product__gallery {
+    position: sticky;
+    top: 96px;
+  }
+
+  .product__main-image {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .product__main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product__thumbs {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .product__thumb {
+    width: 72px;
+    height: 90px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 2px solid var(--color-border);
+    background: var(--color-surface);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .product__thumb.is-active {
+    border-color: var(--color-accent);
+  }
+
+  .product__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product__info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .product__type {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .product__name {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.15;
+  }
+
+  .product__notes {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  .product__desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .product__meta {
+    border-top: 1px solid var(--color-border);
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product__meta-item {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .product__meta-label {
+    flex-shrink: 0;
+    width: 110px;
+    color: var(--color-text-tertiary);
+  }
+
+  .product__meta-value {
+    color: var(--color-text);
+  }
+
+  .product__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: background 0.25s var(--ease-out);
+    margin-top: 8px;
+  }
+
+  .product__cta:hover {
+    background: var(--color-accent-hover);
+    color: #fff;
+  }
+
+  .product__cta-note {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: -6px;
+  }
+
+  .product__accordion {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .product__accordion:first-of-type {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .product__accordion-title {
+    padding: 16px 4px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .product__accordion-title::-webkit-details-marker {
+    display: none;
+  }
+
+  .product__accordion-title::after {
+    content: "+";
+    font-size: 18px;
+    color: var(--color-accent);
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .product__accordion[open] .product__accordion-title::after {
+    transform: rotate(45deg);
+  }
+
+  .product__accordion-body {
+    padding: 0 4px 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  /* ---- Story ---- */
+  .story {
+    padding: 64px 0;
+    background: var(--color-surface-subtle);
+  }
+
+  .story__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .story__title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .story__body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--color-text-secondary);
+  }
+
+  .story__body p {
+    margin-bottom: 14px;
+  }
+
+  .story__body strong {
+    color: var(--color-text);
+    font-weight: 550;
+  }
+
+  /* ---- Related ---- */
+  .related {
+    padding: 64px 0 96px;
+  }
+
+  .related__title {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    margin-bottom: 24px;
+  }
+
+  .related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .related__card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .related__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .related__image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .related__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .related__body {
+    padding: 14px 16px 18px;
+  }
+
+  .related__name {
+    font-size: 14px;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .related__notes {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 900px) {
+    .product__layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .product__gallery {
+      position: static;
+    }
+
+    .related__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

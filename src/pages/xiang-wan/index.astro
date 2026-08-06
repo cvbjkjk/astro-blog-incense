@@ -1,0 +1,299 @@
+---
+import Layout from '../../layouts/BaseLayout.astro';
+
+const products = [
+  {
+    slug: "qing-lin-sui",
+    name: "青麟髓 · Qing Lin Sui",
+    en: "Green Dragon Marrow",
+    tag: "New",
+    notes: "Cooling · Clear · Resinous",
+    desc: "A new release with a striking cooling profile — cool, clear, and resinous, designed for slow warm elevation.",
+    image: "/images/xiangwan-01.jpg",
+  },
+  {
+    slug: "chun-yue-hu-die",
+    name: "春月蝴蝶香 · Spring Moon Butterfly",
+    en: "Spring Moon Butterfly",
+    tag: "Classic",
+    notes: "Soft · Floral · Elegant",
+    desc: "A gentle spring-floral blend following the original historical formula, soft and elegant on the burner.",
+    image: "/images/xiangwan-02.jpg",
+  },
+  {
+    slug: "han-jian-ning",
+    name: "汉建宁宫中香 · Han Jianning Palace",
+    en: "Han Jianning Palace Incense",
+    tag: "Classic",
+    notes: "Rich · Warm · Composed",
+    desc: "A palace incense from the Han dynasty tradition, made close to the original recipe — rich, warm, and composed.",
+    image: "/images/xiangwan-03.jpg",
+  },
+  {
+    slug: "kuang-ye-you-lan",
+    name: "旷野幽兰 · Wild Orchid",
+    en: "Wild Orchid of the Wilderness",
+    tag: "Original",
+    notes: "Green · Quiet · Wild",
+    desc: "An original blend — a lone orchid in the open field, green, quiet, and slightly wild.",
+    image: "/images/xiangwan-01.jpg",
+  },
+  {
+    slug: "shou-yang-gong-zhu",
+    name: "寿阳公主梅花香 · Plum Blossom",
+    en: "Princess Shouyang Plum Blossom",
+    tag: "Classic",
+    notes: "Crisp · Cool · Poetic",
+    desc: "Plum blossom incense in the tradition of Princess Shouyang — crisp, cool, and poetic, faithful to the original formula.",
+    image: "/images/xiangwan-02.jpg",
+  },
+  {
+    slug: "xun-ling-shi-li",
+    name: "荀令十里香 · Ten-Mile Fragrance",
+    en: "Xun Ling's Ten-Mile Fragrance",
+    tag: "Classic",
+    notes: "Refined · Lingering · Legendary",
+    desc: "The legendary fragrance said to linger for ten li — made following the original formula, with a lasting, refined character.",
+    image: "/images/xiangwan-03.jpg",
+  },
+  {
+    slug: "lili-marlene",
+    name: "莉莉玛莲 · Lili Marleen",
+    en: "Lili Marleen",
+    tag: "Original",
+    notes: "Smoky · Magnetic · Unforgettable",
+    desc: "An original blend honoring Marlene Dietrich — an irreplaceable legend of the screen: smoky, magnetic, unforgettable.",
+    image: "/images/xiangwan-01.jpg",
+  },
+];
+---
+
+<Layout
+  title="Incense Pellets (Xiang Wan) — Hand-Rolled Chinese Incense Balls | naturalincense.de"
+  description="Hand-rolled Chinese incense pellets (xiang wan) for electric warmers. Traditional formulas from the Xiang Pu lineage — Qing Lin Sui, Spring Moon Butterfly, and more. Heat at 100-120°C and rise slowly."
+>
+  <!-- Page hero -->
+  <section class="shop-hero">
+    <div class="container">
+      <p class="shop-hero__eyebrow">The Incense Pellets</p>
+      <h1 class="shop-hero__title">Xiang Wan 香丸</h1>
+      <p class="shop-hero__sub">
+        Hand-rolled incense pellets for electric warmers — traditional formulas from the Xiang Pu lineage, made by hand in small batches. Start at 100–120&deg;C, rise slowly toward 180–200&deg;C as the aroma unfolds.
+      </p>
+    </div>
+  </section>
+
+  <!-- Product grid -->
+  <section class="products">
+    <div class="container">
+      <div class="products__grid">
+        {products.map((p) => (
+          <article class="product-card">
+            <a href={`/xiang-wan/${p.slug}/`} class="product-card__link" aria-label={p.name}>
+              <div class="product-card__image">
+                <img src={p.image} alt={p.name} loading="lazy" />
+                <span class="product-card__tag">{p.tag}</span>
+              </div>
+            </a>
+            <div class="product-card__body">
+              <h2 class="product-card__name">
+                <a href={`/xiang-wan/${p.slug}/`}>{p.name}</a>
+              </h2>
+              <p class="product-card__notes">{p.notes}</p>
+              <p class="product-card__desc">{p.desc}</p>
+              <a href={`/xiang-wan/${p.slug}/`} class="product-card__cta">View details</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Heating guide -->
+  <section class="guide">
+    <div class="container">
+      <div class="guide__card">
+        <h2 class="guide__title">Heating Guide</h2>
+        <p class="guide__text">
+          All pellets are designed for electric incense warmers with temperature control. Start at <strong>100–120&deg;C</strong>; as the aroma fades, gradually raise toward <strong>180–200&deg;C</strong>. Since every warmer differs, treat these as reference points.
+        </p>
+        <p class="guide__text">
+          Like a stronger presence? Use <strong>two pellets at once</strong> and raise the temperature slowly — the top, middle, and base notes each unfold at different stages. Prefer it lighter? Break a pellet and flatten it. A thousand noses, a thousand preferences.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ---- Shop Hero ---- */
+  .shop-hero {
+    padding: 64px 0 48px;
+  }
+
+  .shop-hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .shop-hero__title {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    margin-bottom: 16px;
+  }
+
+  .shop-hero__sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 62ch;
+  }
+
+  /* ---- Product Grid ---- */
+  .products {
+    padding-bottom: 64px;
+  }
+
+  .products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .product-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .product-card__image {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .product-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .product-card:hover .product-card__image img {
+    transform: scale(1.04);
+  }
+
+  .product-card__tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--color-accent);
+    border-radius: 999px;
+  }
+
+  .product-card__body {
+    padding: 20px 20px 24px;
+  }
+
+  .product-card__name {
+    font-size: 17px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .product-card__name a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .product-card__name a:hover {
+    color: var(--color-accent);
+  }
+
+  .product-card__notes {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+  }
+
+  .product-card__desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .product-card__cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .product-card__cta:hover {
+    border-color: var(--color-accent);
+  }
+
+  /* ---- Heating Guide ---- */
+  .guide {
+    padding: 24px 0 96px;
+  }
+
+  .guide__card {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 44px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .guide__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 16px;
+  }
+
+  .guide__text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .guide__text strong {
+    color: var(--color-text);
+    font-weight: 550;
+  }
+
+  @media (max-width: 640px) {
+    .products__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .guide__card {
+      padding: 32px 24px;
+    }
+  }
+</style>

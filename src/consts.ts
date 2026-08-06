@@ -4,9 +4,9 @@ export const SITE_URL = "https://naturalincense.de";
 
 export const NAV_ITEMS = [
   { href: "/", label: "Home" },
+  { href: "/xiang-wan", label: "Pellets" },
   { href: "/blog", label: "Journal" },
   { href: "/materials", label: "Materials" },
-  { href: "/tags", label: "Topics" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
