@@ -1,0 +1,103 @@
+---
+import Layout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { materialsDe } from '../../../lib/materials-data-de';
+
+export function getStaticPaths() {
+  return materialsDe.map((m) => ({
+    params: { slug: m.slug },
+    props: m,
+  }));
+}
+
+const m = Astro.props;
+const related = materialsDe.filter((x) => x.slug !== m.slug).slice(0, 3);
+---
+
+<Layout
+  title={`${m.name} (${m.chinese}) — Chinesisches Räuchermaterial | naturalincense.de`}
+  description={`${m.intro} ${m.profile}. Erfahre, wie ${m.name} in der traditionellen chinesischen Räucherkunst verwendet wird.`}
+  ogImage={m.image}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${m.name} (${m.chinese})`,
+    description: m.intro,
+    image: `https://naturalincense.de${m.image}`,
+    mainEntityOfPage: `https://naturalincense.de/de/materials/${m.slug}/`,
+    inLanguage: "de",
+  })} />
+
+  <div class="mat-breadcrumb">
+    <Breadcrumb crumbs={[{ label: "Start", href: "/de/" }, { label: "Materialien", href: "/de/materials/" }, { label: m.name }]} />
+  </div>
+
+  <section class="mat-hero">
+    <div class="container mat-hero__layout">
+      <div class="mat-hero__image">
+        <img src={m.image} alt={m.name} />
+      </div>
+      <div class="mat-hero__info">
+        <p class="mat-hero__category">{m.category}</p>
+        <h1 class="mat-hero__title">{m.name}</h1>
+        <p class="mat-hero__chinese">{m.chinese} · <em>{m.latin}</em></p>
+        <p class="mat-hero__intro">{m.intro}</p>
+        <p class="mat-hero__profile">DUFTPROFIL: {m.profile}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mat-body">
+    <div class="container mat-body__grid">
+      <div class="mat-detail">
+        <h2>Verwendung</h2>
+        <p>{m.uses}</p>
+        <h2>Geschichte</h2>
+        <p>{m.history}</p>
+        <a href={m.relatedArticle} class="mat-detail__related">📖 {m.relatedLabel} →</a>
+      </div>
+      <aside class="mat-side">
+        <h3 class="mat-side__title">Andere Materialien</h3>
+        <div class="mat-side__list">
+          {related.map((r) => (
+            <a href={`/de/materials/${r.slug}/`} class="mat-side__item">
+              <span class="mat-side__name">{r.name}</span>
+              <span class="mat-side__cat">{r.category}</span>
+            </a>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .mat-breadcrumb { max-width: var(--max-width); margin: 0 auto; }
+  .mat-hero { padding: 40px 0 48px; }
+  .mat-hero__layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; }
+  .mat-hero__image { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border); }
+  .mat-hero__image img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .mat-hero__category { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 8px; }
+  .mat-hero__title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 6px; }
+  .mat-hero__chinese { font-size: 15px; color: var(--color-text-tertiary); margin-bottom: 16px; }
+  .mat-hero__chinese em { font-style: italic; }
+  .mat-hero__intro { font-size: 16px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 14px; }
+  .mat-hero__profile { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-tertiary); }
+  .mat-body { padding: 24px 0 96px; }
+  .mat-body__grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  .mat-detail h2 { font-size: 1.3rem; margin: 24px 0 10px; }
+  .mat-detail p { font-size: 15px; line-height: 1.8; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .mat-detail__related { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 500; color: var(--color-accent); text-decoration: none; border-bottom: 1px solid var(--color-accent); }
+  .mat-side { padding: 28px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  .mat-side__title { font-size: 1rem; margin-bottom: 16px; }
+  .mat-side__list { display: flex; flex-direction: column; gap: 10px; }
+  .mat-side__item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .mat-side__item:hover { border-color: var(--color-accent); transform: translateX(3px); }
+  .mat-side__name { font-size: 14px; font-weight: 500; color: var(--color-text); }
+  .mat-side__cat { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); }
+  @media (max-width: 768px) {
+    .mat-hero__layout { grid-template-columns: 1fr; gap: 24px; }
+    .mat-body__grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

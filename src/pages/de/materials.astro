@@ -1,17 +1,18 @@
 ---
 import Layout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const materials = [
-  { name: "Agarholz", latin: "Aquilaria sinensis", aka: "Chenxiang (沉香)", category: "Hölzer", desc: "Das kostbarste Räucherholz der Erde — dunkel, harzig und tief. Entsteht nur in verletzten Bäumen.", note: "Warm, süß-balsamisch mit komplexer harziger Tiefe" },
-  { name: "Sandelholz", latin: "Santalum album", aka: "Tanxiang (檀香)", category: "Hölzer", desc: "Cremig, warm und süß — der klassische Einstieg in die Räucherpraxis.", note: "Cremig, warm, süß mit subtiler milchiger Glätte" },
-  { name: "Weihrauch", latin: "Boswellia sacra", aka: "Ruxiang (乳香)", category: "Harze", desc: "Ein Harz mit zitrusartiger Kiefernöffnung und warmer balsamischer Tiefe.", note: "Zitrus-Kiefern-Öffnung mit warmer balsamischer Tiefe" },
-  { name: "Gewürznelke", latin: "Syzygium aromaticum", aka: "Dingxiang (丁香)", category: "Gewürze", desc: "Scharf, wärmend und betäubend mit süßen Untertönen — ein kräftiger Charakter.", note: "Scharf, wärmend, betäubend mit süßen Untertönen" },
-  { name: "Kassia", latin: "Cinnamomum cassia", aka: "Rougui (肉桂)", category: "Gewürze", desc: "Süßes, holziges Zimt mit einer durchdringenden Schärfe.", note: "Süß, holzig mit einer durchdringenden Note" },
-  { name: "Patschuli", latin: "Pogostemon cablin", aka: "Guanghuoxiang (广藿香)", category: "Kräuter", desc: "Erdig, moschusartig und weinartig mit tiefer Bittersüße.", note: "Erdig, moschusartig, weinartig mit tiefer Bittersüße" },
-  { name: "Kampfer", latin: "Cinnamomum camphora", aka: "Zhangnao (樟脑)", category: "Harze", desc: "Kühlend, medizinisch und scharf mit kampferartigem Biss.", note: "Kühlend, medizinisch, scharf" },
-  { name: "Nardenwurzel", latin: "Nardostachys jatamansi", aka: "Gansong (甘松)", category: "Kräuter", desc: "Erdig, animalisch und moschusartig mit süß-holzigen Untertönen.", note: "Erdig, animalisch, moschusartig mit süß-holzigen Untertönen" },
-  { name: "Borneol", latin: "Dryobalanops aromatica", aka: "Bingpian (冰片)", category: "Harze", desc: "Kühl, durchdringend frisch mit einem minzig-kampferartigen Auftrieb.", note: "Kühl, durchdringend frisch mit minzigem Auftrieb" },
-  { name: "Süßholz", latin: "Glycyrrhiza uralensis", aka: "Gancao (甘草)", category: "Kräuter", desc: "Süß, erdig und umhüllend mit einem leichten Menthol-Finish.", note: "Süß, erdig, umhüllend mit Menthol-Finish" },
+  { slug: "agarwood", name: "Agarholz", latin: "Aquilaria sinensis", aka: "Chenxiang (沉香)", category: "Hölzer", desc: "Das kostbarste Räucherholz der Erde — dunkel, harzig und tief. Entsteht nur in verletzten Bäumen.", note: "Warm, süß-balsamisch mit komplexer harziger Tiefe" },
+  { slug: "sandalwood", name: "Sandelholz", latin: "Santalum album", aka: "Tanxiang (檀香)", category: "Hölzer", desc: "Cremig, warm und süß — der klassische Einstieg in die Räucherpraxis.", note: "Cremig, warm, süß mit subtiler milchiger Glätte" },
+  { slug: "frankincense", name: "Weihrauch", latin: "Boswellia sacra", aka: "Ruxiang (乳香)", category: "Harze", desc: "Ein Harz mit zitrusartiger Kiefernöffnung und warmer balsamischer Tiefe.", note: "Zitrus-Kiefern-Öffnung mit warmer balsamischer Tiefe" },
+  { slug: "clove-bud", name: "Gewürznelke", latin: "Syzygium aromaticum", aka: "Dingxiang (丁香)", category: "Gewürze", desc: "Scharf, wärmend und betäubend mit süßen Untertönen — ein kräftiger Charakter.", note: "Scharf, wärmend, betäubend mit süßen Untertönen" },
+  { slug: "cassia", name: "Kassia", latin: "Cinnamomum cassia", aka: "Rougui (肉桂)", category: "Gewürze", desc: "Süßes, holziges Zimt mit einer durchdringenden Schärfe.", note: "Süß, holzig mit einer durchdringenden Note" },
+  { slug: "patchouli", name: "Patschuli", latin: "Pogostemon cablin", aka: "Guanghuoxiang (广藿香)", category: "Kräuter", desc: "Erdig, moschusartig und weinartig mit tiefer Bittersüße.", note: "Erdig, moschusartig, weinartig mit tiefer Bittersüße" },
+  { slug: "camphor", name: "Kampfer", latin: "Cinnamomum camphora", aka: "Zhangnao (樟脑)", category: "Harze", desc: "Kühlend, medizinisch und scharf mit kampferartigem Biss.", note: "Kühlend, medizinisch, scharf" },
+  { slug: "spikenard", name: "Nardenwurzel", latin: "Nardostachys jatamansi", aka: "Gansong (甘松)", category: "Kräuter", desc: "Erdig, animalisch und moschusartig mit süß-holzigen Untertönen.", note: "Erdig, animalisch, moschusartig mit süß-holzigen Untertönen" },
+  { slug: "borneol", name: "Borneol", latin: "Dryobalanops aromatica", aka: "Bingpian (冰片)", category: "Harze", desc: "Kühl, durchdringend frisch mit einem minzig-kampferartigen Auftrieb.", note: "Kühl, durchdringend frisch mit minzigem Auftrieb" },
+  { slug: "licorice", name: "Süßholz", latin: "Glycyrrhiza uralensis", aka: "Gancao (甘草)", category: "Kräuter", desc: "Süß, erdig und umhüllend mit einem leichten Menthol-Finish.", note: "Süß, erdig, umhüllend mit Menthol-Finish" },
 ];
 
 const categories = ["Alle", "Hölzer", "Harze", "Kräuter", "Gewürze"];
@@ -22,6 +23,9 @@ const t = { label: "Enzyklopädie", title: "Räuchermaterialien", sub: "Ein Verz
   title="Räuchermaterialien — Verzeichnis chinesischer Rohstoffe | naturalincense.de"
   description="Ein Verzeichnis der Rohstoffe der traditionellen chinesischen Räucherkunst: Agarholz, Sandelholz, Weihrauch und mehr — mit Eigenschaften und Duftprofilen."
 >
+  <div class="mat-breadcrumb">
+    <Breadcrumb crumbs={[{ label: "Start", href: "/de/" }, { label: "Materialien" }]} />
+  </div>
   <section class="materials-hero">
     <div class="container">
       <p class="materials-hero__label">{t.label}</p>
@@ -39,7 +43,7 @@ const t = { label: "Enzyklopädie", title: "Räuchermaterialien", sub: "Ein Verz
         {materials.map((m, i) => (
           <article class="material-card" data-category={m.category}>
             <div class="material-card__body">
-              <h2 class="material-card__name">{m.name}</h2>
+              <h2 class="material-card__name"><a href={`/de/materials/${m.slug}/`}>{m.name}</a></h2>
               <p class="material-card__latin">{m.latin} · {m.aka}</p>
               <p class="material-card__category">{m.category}</p>
               <p class="material-card__desc">{m.desc}</p>
@@ -53,6 +57,9 @@ const t = { label: "Enzyklopädie", title: "Räuchermaterialien", sub: "Ein Verz
 </Layout>
 
 <style>
+  .mat-breadcrumb { max-width: var(--max-width); margin: 0 auto; }
+  .material-card__name a { color: var(--color-text); text-decoration: none; transition: color 0.2s ease; }
+  .material-card__name a:hover { color: var(--color-accent); }
   .materials-hero { padding: 64px 0 48px; }
   .materials-hero__label { font-family: var(--font-mono); font-size: 12px; color: var(--color-accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
   .materials-hero__title { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 16px; }
