@@ -229,7 +229,7 @@ const materials = [
     position: relative;
     min-height: 78dvh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
   }
 
@@ -247,7 +247,7 @@ const materials = [
   .hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(28, 38, 32, 0.35) 0%, rgba(28, 38, 32, 0.15) 40%, rgba(247, 236, 212, 0.9) 100%);
+    background: linear-gradient(to bottom, rgba(28, 38, 32, 0.35) 0%, rgba(28, 38, 32, 0.2) 45%, rgba(247, 236, 212, 0.95) 100%);
   }
 
   .hero__content {
@@ -256,7 +256,7 @@ const materials = [
     display: flex;
     flex-direction: column;
     gap: 18px;
-    padding-top: 40vh;
+    padding: 28vh 0 48px;
     color: #fff;
   }
 
@@ -312,7 +312,7 @@ const materials = [
 
   @media (max-width: 640px) {
     .hero__content {
-      padding-top: 30vh;
+      padding: 20vh 0 32px;
     }
   }
 
