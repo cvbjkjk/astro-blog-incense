@@ -3,12 +3,20 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import TagChip from '../components/TagChip.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { getLangFromUrl } from '../i18n/ui';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 const postURL = new URL(Astro.url.pathname, Astro.site);
 const heroURL = heroImage ? new URL(heroImage, Astro.site) : null;
+const lang = getLangFromUrl(Astro.url);
+const isDe = lang === "de";
+const homeHref = isDe ? "/de/" : "/";
+const journalHref = isDe ? "/de/blog/" : "/blog/";
+const homeLabel = isDe ? "Start" : "Home";
+const journalLabel = isDe ? "Journal" : "Journal";
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -29,21 +37,30 @@ const articleSchema = {
     name: 'naturalincense.de',
     url: new URL('/', Astro.site).toString(),
   },
-  inLanguage: 'en',
+  inLanguage: lang,
 };
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
-    { '@type': 'ListItem', position: 2, name: 'Journal', item: new URL('/blog/', Astro.site).toString() },
+    { '@type': 'ListItem', position: 1, name: homeLabel, item: new URL(homeHref, Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: journalLabel, item: new URL(journalHref, Astro.site).toString() },
     { '@type': 'ListItem', position: 3, name: title, item: postURL.toString() },
   ],
 };
 ---
 
 <BaseLayout title={`${title} — INCENSE`} description={description} ogImage={heroURL?.toString()}>
+  <div class="post__breadcrumb">
+    <Breadcrumb
+      crumbs={[
+        { label: homeLabel, href: homeHref },
+        { label: journalLabel, href: journalHref },
+        { label: title },
+      ]}
+    />
+  </div>
   <article class="post">
     {heroImage && (
       <div class="post__hero">

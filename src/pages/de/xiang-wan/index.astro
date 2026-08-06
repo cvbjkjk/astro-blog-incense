@@ -37,6 +37,8 @@ const images = [
       "@type": "Offer",
       "availability": "https://schema.org/InStock",
       "priceCurrency": "EUR",
+      "price": "12.00",
+      "priceValidUntil": "2027-12-31",
       "url": "https://naturalincense.de/de/xiang-wan/"
     }
   })} />
@@ -77,6 +79,10 @@ const images = [
           <div class="product__meta-item">
             <span class="product__meta-label">{t.metaFormulas}</span>
             <span class="product__meta-value" set:html={t.metaFormulasValue}></span>
+          </div>
+          <div class="product__meta-item">
+            <span class="product__meta-label">Preis</span>
+            <span class="product__meta-value">€12,00 / 10 g</span>
           </div>
           <div class="product__meta-item">
             <span class="product__meta-label">{t.metaUse}</span>

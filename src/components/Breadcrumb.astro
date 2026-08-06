@@ -1,0 +1,76 @@
+---
+// Reusable breadcrumb component with BreadcrumbList JSON-LD
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: `https://naturalincense.de${c.href}` } : {}),
+  })),
+};
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <ol class="breadcrumb__list">
+    {crumbs.map((c, i) => (
+      <li class="breadcrumb__item">
+        {c.href && i < crumbs.length - 1 ? (
+          <a href={c.href} class="breadcrumb__link">{c.label}</a>
+        ) : (
+          <span class="breadcrumb__current" aria-current="page">{c.label}</span>
+        )}
+        {i < crumbs.length - 1 && <span class="breadcrumb__sep" aria-hidden="true">/</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    padding: 24px 0 0;
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb__link {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb__current {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .breadcrumb__sep {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    opacity: 0.6;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 const materials = [
   {
@@ -107,7 +108,10 @@ const materials = [
 const categories = ["All", "Woods", "Resins", "Herbs", "Spices"];
 ---
 
-<BaseLayout title="Materials — INCENSE" description="A directory of raw incense materials used in traditional Chinese incense culture.">
+<Layout title="Materials — INCENSE" description="A directory of raw incense materials used in traditional Chinese incense culture.">
+  <div class="materials-breadcrumb">
+    <Breadcrumb crumbs={[{ label: "Home", href: "/" }, { label: "Materials" }]} />
+  </div>
   <section class="materials-page">
     <div class="container">
       <div class="section-label">
@@ -138,16 +142,18 @@ const categories = ["All", "Woods", "Resins", "Herbs", "Spices"];
             data-category={m.category}
             style={`--reveal-delay: ${i * 0.05}s`}
           >
-            <div
-              class="material-card__image"
-            >
-              <img src={m.image} alt="" loading="lazy" />
-              <div class="material-card__overlay"></div>
-              <span class="material-card__initial">{m.name[0]}</span>
-            </div>
+            <a href={`/materials/${m.slug}/`} class="material-card__link" aria-label={m.name}>
+              <div
+                class="material-card__image"
+              >
+                <img src={m.image} alt="" loading="lazy" />
+                <div class="material-card__overlay"></div>
+                <span class="material-card__initial">{m.name[0]}</span>
+              </div>
+            </a>
             <div class="material-card__body">
               <div class="material-card__header">
-                <h2 class="material-card__name">{m.name}</h2>
+                <h2 class="material-card__name"><a href={`/materials/${m.slug}/`}>{m.name}</a></h2>
                 <span
                   class="material-card__badge"
                 >
@@ -167,7 +173,7 @@ const categories = ["All", "Woods", "Resins", "Herbs", "Spices"];
       </div>
     </div>
   </section>
-</BaseLayout>
+</Layout>
 
 <script>
   const buttons = document.querySelectorAll("#filters .filter-btn");
@@ -303,6 +309,16 @@ const categories = ["All", "Woods", "Resins", "Herbs", "Spices"];
     justify-content: space-between;
     gap: 8px;
     margin-bottom: 2px;
+  }
+
+  .material-card__name a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .material-card__name a:hover {
+    color: var(--color-accent);
   }
 
   .material-card__name {

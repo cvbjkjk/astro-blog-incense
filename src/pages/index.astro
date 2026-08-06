@@ -236,9 +236,7 @@ const materials = [
       <div class="newsletter__inner">
         <h2 class="newsletter__title">Notes from the Incense Journal</h2>
         <p class="newsletter__desc">Occasional letters on materials, blends, and the quiet art of burning — no spam, ever.</p>
-        <form class="newsletter__form" action="https://formsubmit.co/hello@naturalincense.de" method="POST">
-          <input type="hidden" name="_subject" value="Newsletter signup from naturalincense.de" />
-          <input type="hidden" name="_captcha" value="false" />
+        <form class="newsletter__form" action="https://naturalincense.substack.com/api/v1/free?nojs=true" method="POST" target="_blank">
           <input type="email" name="email" class="newsletter__input" placeholder="Email address" required />
           <button type="submit" class="newsletter__btn">Sign up</button>
         </form>

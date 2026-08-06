@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const formulas = [
   {
@@ -84,9 +85,16 @@ const images = [
       "@type": "Offer",
       "availability": "https://schema.org/InStock",
       "priceCurrency": "EUR",
+      "price": "12.00",
+      "priceValidUntil": "2027-12-31",
       "url": "https://naturalincense.de/xiang-wan/"
     }
   })} />
+
+  <!-- Breadcrumb -->
+  <div class="product-breadcrumb">
+    <Breadcrumb crumbs={[{ label: "Home", href: "/" }, { label: "Incense Pellets" }]} />
+  </div>
 
   <section class="product">
     <div class="container product__layout">
@@ -141,6 +149,10 @@ const images = [
           <div class="product__meta-item">
             <span class="product__meta-label">Formulas</span>
             <span class="product__meta-value">7 — traditional &amp; original</span>
+          </div>
+          <div class="product__meta-item">
+            <span class="product__meta-label">Price</span>
+            <span class="product__meta-value">€12.00 / 10 g</span>
           </div>
           <div class="product__meta-item">
             <span class="product__meta-label">For use with</span>

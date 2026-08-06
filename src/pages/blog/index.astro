@@ -4,6 +4,7 @@ import Layout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import TagChip from '../../components/TagChip.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -13,6 +14,9 @@ const rest = posts.slice(1);
 ---
 
 <Layout title={`Journal - ${SITE_TITLE}`} description="Articles on Chinese incense culture, materials, history, and blending traditions.">
+  <div class="journal-breadcrumb">
+    <Breadcrumb crumbs={[{ label: "Home", href: "/" }, { label: "Journal" }]} />
+  </div>
   <section class="journal-hero">
     <div class="container">
       <h1 class="journal-hero__title">Journal</h1>

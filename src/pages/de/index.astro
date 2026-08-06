@@ -151,9 +151,7 @@ const t = de.home;
       <div class="newsletter__inner">
         <h2 class="newsletter__title">{t.newsletterTitle}</h2>
         <p class="newsletter__desc">{t.newsletterDesc}</p>
-        <form class="newsletter__form" action="https://formsubmit.co/hello@naturalincense.de" method="POST">
-          <input type="hidden" name="_subject" value="Newsletter-Anmeldung von naturalincense.de" />
-          <input type="hidden" name="_captcha" value="false" />
+        <form class="newsletter__form" action="https://naturalincense.substack.com/api/v1/free?nojs=true" method="POST" target="_blank">
           <input type="email" name="email" class="newsletter__input" placeholder={t.newsletterPlaceholder} required />
           <button type="submit" class="newsletter__btn">{t.newsletterBtn}</button>
         </form>
