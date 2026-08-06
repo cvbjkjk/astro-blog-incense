@@ -67,3 +67,5 @@ Agarholz erlebt man am besten durch sanftes Erhitzen statt Verbrennen. Verwende 
 3. Konzentriere dich auf die subtilen Übergänge zwischen Kopf-, Herz- und Basisnoten
 
 Die Praxis, still mit einem Stück gealtertem Agarholz zu sitzen, ist eine der feinsten sensorischen Erfahrungen des Lebens — eine direkte Verbindung zu einer Tradition, die Jahrtausende umspannt.
+
+Agarholz findet auch Eingang in [hochwertige Räucherkugeln](/de/xiang-wan/) und traditionelle Mischungen — von Hand gerollte Kugeln aus den feinsten Pflanzen.

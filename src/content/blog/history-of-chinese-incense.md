@@ -68,3 +68,5 @@ The 21st century has seen a remarkable revival of Chinese incense culture. Acros
 - **Contemporary practitioners** are developing new blends while honoring traditional principles
 
 The revival reflects a broader cultural reconnection with traditional arts. For many, incense offers something increasingly rare in modern life - a reason to slow down, breathe deeply, and be present.
+
+Today that heritage lives on not only in sticks and cones but in [hand-rolled incense pellets](/xiang-wan/) — a modern expression of the same thousand-year tradition.

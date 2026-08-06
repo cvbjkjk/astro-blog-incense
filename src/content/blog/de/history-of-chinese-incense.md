@@ -42,4 +42,4 @@ In der Ming-Dynastie (1368–1644) wurde Räucherwerk für breitere Bevölkerung
 
 ## Die Gegenwart: Eine wiederbelebte Tradition
 
-Heute erlebt das chinesische Räuchern eine Renaissance. Sammler und Praktiker wenden sich wieder den klassischen Handbüchern zu, und das Interesse an authentischen Materialien und traditionellen Rezepturen wächst weltweit. Die Kunst des Räucherns — einst das Privileg von Kaisern und Gelehrten — ist heute für jeden zugänglich, der Stille und Achtsamkeit sucht.
+Heute erlebt das chinesische Räuchern eine Renaissance. Sammler und Praktiker wenden sich wieder den klassischen Handbüchern zu, und das Interesse an authentischen Materialien und traditionellen Rezepturen wächst weltweit. Neben Stäbchen und Kegeln erfreuen sich handgerollte Räucherkugeln wachsender Beliebtheit. Die Kunst des Räucherns — einst das Privileg von Kaisern und Gelehrten — ist heute für jeden zugänglich, der Stille und Achtsamkeit sucht.

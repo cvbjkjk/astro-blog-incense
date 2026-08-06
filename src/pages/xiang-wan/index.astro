@@ -8,6 +8,7 @@ const formulas = [
     note: "New release · 凉意突出",
     desc: "The newest formula, with a strikingly cool, clear opening — designed to be savored as the temperature rises.",
     source: "New release",
+    link: { href: "/blog/agarwood-king-of-incense/", label: "Learn about agarwood →" },
   },
   {
     name_cn: "春月蝴蝶香",
@@ -15,6 +16,7 @@ const formulas = [
     note: "按原方",
     desc: "A gentle spring-floral blend, made close to the original historical formula.",
     source: "Based on the original formula",
+    link: { href: "/blog/agarwood-vs-sandalwood/", label: "Learn about sandalwood →" },
   },
   {
     name_cn: "汉建宁宫中香",
@@ -22,6 +24,7 @@ const formulas = [
     note: "按原方",
     desc: "A palace incense from the Han dynasty tradition — rich, warm, and composed.",
     source: "Based on the original formula",
+    link: { href: "/materials/", label: "Explore incense materials →" },
   },
   {
     name_cn: "旷野幽兰",
@@ -29,6 +32,7 @@ const formulas = [
     note: "自创香方",
     desc: "An original creation — a lone orchid in the open field: green, quiet, and slightly wild.",
     source: "Original creation",
+    link: { href: "/blog/art-of-blending-incense/", label: "Learn about blending incense →" },
   },
   {
     name_cn: "寿阳公主梅花香",
@@ -36,6 +40,7 @@ const formulas = [
     note: "按原方",
     desc: "Plum blossom incense in the tradition of Princess Shouyang — crisp, cool, and poetic.",
     source: "Based on the original formula",
+    link: { href: "/blog/incense-tools-utensils/", label: "Learn about incense tools →" },
   },
   {
     name_cn: "荀令十里香",
@@ -43,6 +48,7 @@ const formulas = [
     note: "按原方",
     desc: "The legendary fragrance said to linger for ten li — refined and long-lasting.",
     source: "Based on the original formula",
+    link: { href: "/blog/history-of-chinese-incense/", label: "The story of Chinese incense →" },
   },
   {
     name_cn: "莉莉玛莲",
@@ -50,6 +56,7 @@ const formulas = [
     note: "原创香方",
     desc: "An original blend dedicated to Marlene Dietrich — an irreplaceable legend of the screen: smoky, magnetic, unforgettable.",
     source: "Original creation, dedicated to Marlene Dietrich",
+    link: { href: "/blog/how-to-heat-incense-pellets/", label: "How to use incense pellets →" },
   },
 ];
 
@@ -127,7 +134,7 @@ const images = [
         <h1 class="product__name">Incense Pellets 香丸</h1>
         <p class="product__notes">Xiang Wan · For electric warmers</p>
         <p class="product__desc">
-          Hand-rolled natural incense pellets made from ground botanicals and resins — no charcoal, no synthetic perfume oils. These Chinese incense pellets are crafted in seven formulas, each made in small batches and refined by hand since early October.
+          Hand-rolled natural incense pellets made from ground botanicals and resins — no charcoal, no synthetic perfume oils. Discover the <a href="/blog/history-of-chinese-incense/">history and art of Chinese incense</a> behind these seven traditional and original formulas, or explore the <a href="/materials/">raw materials</a> that give each pellet its unique character.
         </p>
 
         <div class="product__meta">
@@ -178,6 +185,9 @@ const images = [
             </div>
             <p class="formula-card__desc">{f.desc}</p>
             <p class="formula-card__source">{f.source}</p>
+            {f.link && (
+              <a href={f.link.href} class="formula-card__link">{f.link.label}</a>
+            )}
           </article>
         ))}
       </div>
@@ -193,7 +203,29 @@ const images = [
           <p>These pellets began as samples in early October — re-blended, re-tested, refined by hand. Incense is not the main work here, so only a few formulas exist, and each one earns its place.</p>
           <p><strong>Qing Lin Sui</strong> is new, with a striking coolness. <strong>Spring Moon Butterfly</strong> and <strong>Han Jianning Palace Incense</strong> follow their classical formulas closely. <strong>Wild Orchid of the Wilderness</strong> is an original creation; <strong>Princess Shouyang Plum Blossom</strong> and <strong>Xun Ling's Ten-Mile Fragrance</strong> honor the originals. <strong>Lili Marleen</strong> is my own blend, dedicated to Marlene Dietrich — a legend impossible to copy.</p>
           <p>The pellets were resized smaller after the first batch — your feedback, honored. They pair best with a temperature-controlled electric warmer.</p>
+          <p class="story__guide-link">For a complete step-by-step guide, read <a href="/blog/how-to-heat-incense-pellets/">How to Heat Incense Pellets</a> in our Journal.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More from the Journal -->
+  <section class="journal-more">
+    <div class="container">
+      <h2 class="journal-more__title">More from the Journal</h2>
+      <div class="journal-more__list">
+        <a href="/blog/history-of-chinese-incense/" class="journal-more__item">
+          <span class="journal-more__icon">📖</span>
+          <span class="journal-more__text">A Brief History of Chinese Incense</span>
+        </a>
+        <a href="/blog/art-of-blending-incense/" class="journal-more__item">
+          <span class="journal-more__icon">📖</span>
+          <span class="journal-more__text">The Art of Blending Incense</span>
+        </a>
+        <a href="/blog/agarwood-vs-sandalwood/" class="journal-more__item">
+          <span class="journal-more__icon">📖</span>
+          <span class="journal-more__text">Agarwood vs Sandalwood</span>
+        </a>
       </div>
     </div>
   </section>
@@ -523,6 +555,92 @@ const images = [
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--color-text-tertiary);
+  }
+
+  .formula-card__link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .formula-card__link:hover {
+    border-color: var(--color-accent);
+  }
+
+  .story__guide-link {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .story__guide-link a {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+  }
+
+  .story__guide-link a:hover {
+    opacity: 0.8;
+  }
+
+  /* ---- More from the Journal ---- */
+  .journal-more {
+    padding: 64px 0 96px;
+  }
+
+  .journal-more__title {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .journal-more__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .journal-more__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .journal-more__item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .journal-more__icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .journal-more__text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .journal-more__list {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ---- Story ---- */

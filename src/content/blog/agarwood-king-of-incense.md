@@ -67,3 +67,5 @@ Agarwood is best experienced by gentle heating rather than burning. Use a tradit
 3. Focus on the subtle shifts between top, heart, and base notes
 
 The practice of quietly sitting with a piece of aged agarwood is one of life's most refined sensory experiences - a direct connection to a tradition that spans millennia.
+
+Agarwood also finds its way into [premium incense pellets](/xiang-wan/) and traditional blends — hand-rolled pellets made with the finest botanicals.

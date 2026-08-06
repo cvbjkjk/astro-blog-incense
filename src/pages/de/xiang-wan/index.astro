@@ -5,13 +5,13 @@ import Layout from '../../../layouts/BaseLayout.astro';
 const t = de.xiangwan;
 
 const formulas = [
-  { name_cn: "青麟髓", name_en: "Qing Lin Sui", note: "Neu · 凉意突出", desc: "Die neueste Rezeptur mit auffallend kühler, klarer Öffnung — zum Genießen bei steigender Temperatur.", source: "Neue Veröffentlichung" },
-  { name_cn: "春月蝴蝶香", name_en: "Spring Moon Butterfly", note: "Nach Originalrezept", desc: "Eine sanfte frühlingsblumige Mischung, nach dem Originalrezept hergestellt.", source: "Basiert auf dem Originalrezept" },
-  { name_cn: "汉建宁宫中香", name_en: "Han Jianning Palace Incense", note: "Nach Originalrezept", desc: "Ein Palast-Räucherwerk aus der Han-Dynastie-Tradition — reich, warm und ausgewogen.", source: "Basiert auf dem Originalrezept" },
-  { name_cn: "旷野幽兰", name_en: "Wild Orchid of the Wilderness", note: "Eigene Kreation", desc: "Eine eigene Kreation — eine einsame Orchidee im offenen Feld: grün, still und ein wenig wild.", source: "Eigene Kreation" },
-  { name_cn: "寿阳公主梅花香", name_en: "Princess Shouyang Plum Blossom", note: "Nach Originalrezept", desc: "Pflaumenblüten-Räucherwerk in der Tradition der Prinzessin Shouyang — frisch, kühl und poetisch.", source: "Basiert auf dem Originalrezept" },
-  { name_cn: "荀令十里香", name_en: "Xun Ling's Ten-Mile Fragrance", note: "Nach Originalrezept", desc: "Der legendäre Duft, der zehn Li lang anhalten soll — verfeinert und langlebig.", source: "Basiert auf dem Originalrezept" },
-  { name_cn: "莉莉玛莲", name_en: "Lili Marleen", note: "Eigene Kreation", desc: "Eine eigene Mischung, Marlene Dietrich gewidmet — einer unersetzlichen Legende der Leinwand: rauchig, magnetisch, unvergesslich.", source: "Eigene Kreation, Marlene Dietrich gewidmet" },
+  { name_cn: "青麟髓", name_en: "Qing Lin Sui", note: "Neu · 凉意突出", desc: "Die neueste Rezeptur mit auffallend kühler, klarer Öffnung — zum Genießen bei steigender Temperatur.", source: "Neue Veröffentlichung", link: { href: "/de/blog/agarwood-king-of-incense/", label: "Mehr über Agarholz →" } },
+  { name_cn: "春月蝴蝶香", name_en: "Spring Moon Butterfly", note: "Nach Originalrezept", desc: "Eine sanfte frühlingsblumige Mischung, nach dem Originalrezept hergestellt.", source: "Basiert auf dem Originalrezept", link: { href: "/de/blog/agarwood-vs-sandalwood/", label: "Mehr über Sandelholz →" } },
+  { name_cn: "汉建宁宫中香", name_en: "Han Jianning Palace Incense", note: "Nach Originalrezept", desc: "Ein Palast-Räucherwerk aus der Han-Dynastie-Tradition — reich, warm und ausgewogen.", source: "Basiert auf dem Originalrezept", link: { href: "/de/materials/", label: "Räuchermaterialien entdecken →" } },
+  { name_cn: "旷野幽兰", name_en: "Wild Orchid of the Wilderness", note: "Eigene Kreation", desc: "Eine eigene Kreation — eine einsame Orchidee im offenen Feld: grün, still und ein wenig wild.", source: "Eigene Kreation", link: { href: "/de/blog/art-of-blending-incense/", label: "Mehr über das Mischen →" } },
+  { name_cn: "寿阳公主梅花香", name_en: "Princess Shouyang Plum Blossom", note: "Nach Originalrezept", desc: "Pflaumenblüten-Räucherwerk in der Tradition der Prinzessin Shouyang — frisch, kühl und poetisch.", source: "Basiert auf dem Originalrezept", link: { href: "/de/blog/incense-tools-utensils/", label: "Mehr über Räucherwerkzeuge →" } },
+  { name_cn: "荀令十里香", name_en: "Xun Ling's Ten-Mile Fragrance", note: "Nach Originalrezept", desc: "Der legendäre Duft, der zehn Li lang anhalten soll — verfeinert und langlebig.", source: "Basiert auf dem Originalrezept", link: { href: "/de/blog/history-of-chinese-incense/", label: "Die Geschichte des chinesischen Räucherns →" } },
+  { name_cn: "莉莉玛莲", name_en: "Lili Marleen", note: "Eigene Kreation", desc: "Eine eigene Mischung, Marlene Dietrich gewidmet — einer unersetzlichen Legende der Leinwand: rauchig, magnetisch, unvergesslich.", source: "Eigene Kreation, Marlene Dietrich gewidmet", link: { href: "/de/blog/how-to-heat-incense-pellets/", label: "Räucherkugeln richtig erhitzen →" } },
 ];
 
 const images = [
@@ -71,7 +71,7 @@ const images = [
         <p class="product__type">{t.productType}</p>
         <h1 class="product__name">{t.productName}</h1>
         <p class="product__notes">{t.productNotes}</p>
-        <p class="product__desc">{t.productDesc}</p>
+        <p class="product__desc" set:html={t.productDesc}></p>
 
         <div class="product__meta">
           <div class="product__meta-item">
@@ -116,6 +116,9 @@ const images = [
             </div>
             <p class="formula-card__desc">{f.desc}</p>
             <p class="formula-card__source">{f.source}</p>
+            {f.link && (
+              <a href={f.link.href} class="formula-card__link">{f.link.label}</a>
+            )}
           </article>
         ))}
       </div>
@@ -130,7 +133,29 @@ const images = [
           <p>{t.storyP1}</p>
           <p set:html={t.storyP2}></p>
           <p>{t.storyP3}</p>
+          <p class="story__guide-link">Für eine vollständige Schritt-für-Schritt-Anleitung lies <a href="/de/blog/how-to-heat-incense-pellets/">Räucherkugeln richtig erhitzen</a> in unserem Journal.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More from the Journal -->
+  <section class="journal-more">
+    <div class="container">
+      <h2 class="journal-more__title">Mehr aus dem Journal</h2>
+      <div class="journal-more__list">
+        <a href="/de/blog/history-of-chinese-incense/" class="journal-more__item">
+          <span class="journal-more__icon">📖</span>
+          <span class="journal-more__text">Eine kurze Geschichte des chinesischen Räucherns</span>
+        </a>
+        <a href="/de/blog/art-of-blending-incense/" class="journal-more__item">
+          <span class="journal-more__icon">📖</span>
+          <span class="journal-more__text">Die Kunst des Räuchermischens</span>
+        </a>
+        <a href="/de/blog/agarwood-vs-sandalwood/" class="journal-more__item">
+          <span class="journal-more__icon">📖</span>
+          <span class="journal-more__text">Agarholz vs. Sandelholz</span>
+        </a>
       </div>
     </div>
   </section>
@@ -184,12 +209,24 @@ const images = [
   .formula-card__tag { flex-shrink: 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); border: 1px solid var(--color-accent); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
   .formula-card__desc { font-size: 13px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 10px; }
   .formula-card__source { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-tertiary); }
+  .formula-card__link { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 500; color: var(--color-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
+  .formula-card__link:hover { border-color: var(--color-accent); }
   .story { padding: 64px 0 96px; background: var(--color-surface-subtle); }
   .story__inner { max-width: 720px; margin: 0 auto; }
   .story__title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 20px; text-align: center; }
   .story__body { font-size: 15px; line-height: 1.85; color: var(--color-text-secondary); }
   .story__body p { margin-bottom: 14px; }
   .story__body strong { color: var(--color-text); font-weight: 550; }
+  .story__guide-link { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--color-border); }
+  .story__guide-link a { color: var(--color-accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--color-accent); }
+  .journal-more { padding: 64px 0 96px; }
+  .journal-more__title { font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 24px; text-align: center; }
+  .journal-more__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .journal-more__item { display: flex; align-items: center; gap: 12px; padding: 20px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); text-decoration: none; transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out); }
+  .journal-more__item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .journal-more__icon { font-size: 22px; flex-shrink: 0; }
+  .journal-more__text { font-size: 14px; font-weight: 500; color: var(--color-text); line-height: 1.4; }
+  @media (max-width: 768px) { .journal-more__list { grid-template-columns: 1fr; } }
   @media (max-width: 900px) { .product__layout { grid-template-columns: 1fr; gap: 32px; } .product__gallery { position: static; } .formulas__grid { grid-template-columns: 1fr; } }
 </style>
 

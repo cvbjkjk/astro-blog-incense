@@ -78,3 +78,5 @@ Die Kunst liegt darin, Anpassungen vorzunehmen, während der wesentliche Charakt
 Im Kern spiegelt das Hehe-Mischen ein tieferes chinesisches philosophisches Prinzip wider: Harmonie, erreicht durch das ausgewogene Zusammenspiel unterschiedlicher Elemente. Eine gut gemachte Mischung dreht sich nicht um die lauteste Zutat, sondern um den Raum zwischen ihnen — das subtile Wechselspiel, das entsteht, wenn Komponenten sich unterstützen statt konkurrieren.
 
 Deshalb wurde das Räuchermischen in China traditionell von Gelehrten neben Poesie, Malerei und Musik praktiziert. Es ist eine Disziplin, die Empfindlichkeit für Proportion, Timing und die Schönheit der Zurückhaltung kultiviert — Qualitäten, die in allen traditionellen Künsten geschätzt werden.
+
+Ist eine Mischung komponiert, gebunden und gereift, sind die Kugeln [bereit zur Verwendung](/de/xiang-wan/) — von Hand gerollt und bereit für deine elektrische Duftlampe.

@@ -42,7 +42,7 @@ export const de = {
     productType: "Von Hand gerollt · Kleine Mengen",
     productName: "Räucherkugeln 香丸",
     productNotes: "Xiang Wan · Für elektrische Duftlampen",
-    productDesc: "Von Hand gerollte Räucherkugeln aus gemahlenen Pflanzen und Harzen — ohne Holzkohle, ohne synthetische Duftöle. Sieben Rezepturen, jede in kleinen Mengen hergestellt und seit Anfang Oktober von Hand verfeinert.",
+    productDesc: "Von Hand gerollte natürliche Räucherkugeln aus gemahlenen Pflanzen und Harzen — ohne Holzkohle, ohne synthetische Duftöle. Entdecke die <a href=\"/de/blog/history-of-chinese-incense/\">Geschichte und Kunst des chinesischen Räucherns</a> hinter diesen sieben traditionellen und originellen Rezepturen oder erkunde die <a href=\"/de/materials/\">Rohmaterialien</a>, die jeder Kugel ihren einzigartigen Charakter verleihen.",
     metaFormulas: "Rezepturen",
     metaFormulasValue: "7 — traditionell &amp; originell",
     metaUse: "Verwendung",

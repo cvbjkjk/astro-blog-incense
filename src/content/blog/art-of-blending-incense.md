@@ -78,3 +78,5 @@ The art lies in making adjustments while preserving the blend's essential charac
 At its core, hehe blending reflects a deeper Chinese philosophical principle: harmony achieved through the balanced interaction of distinct elements. A well-crafted blend is not about the loudest ingredient but about the space between them - the subtle interplay that emerges when components support rather than compete.
 
 This is why incense blending in China was traditionally practiced by scholars alongside poetry, painting, and music. It is a discipline that cultivates sensitivity to proportion, timing, and the beauty of understatement - qualities valued across all the traditional arts.
+
+Once a blend is composed, bound, and rested, the pellets are [ready to use](/xiang-wan/) — hand-rolled and ready for your electric warmer.
