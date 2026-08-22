@@ -18,7 +18,7 @@ const navItems = [
 ---
 
 <header class="header">
-  <nav class="container header__nav">
+  <nav class="container header__nav" aria-label="Primary navigation">
     <a href={lang === "de" ? "/de/" : "/"} class="header__logo">
       <span class="header__logo-text">{SITE_TITLE}</span>
     </a>
@@ -28,7 +28,7 @@ const navItems = [
           <a href={item.href} class="header__link">{item.label}</a>
         </li>
       ))}
-      <li>
+      <li class="header__language">
         <LanguageSwitcher currentPath={Astro.url.pathname} />
       </li>
     </ul>
@@ -40,9 +40,7 @@ const navItems = [
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--color-bg) 88%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -50,61 +48,67 @@ const navItems = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
+    min-height: 60px;
   }
 
   .header__logo {
-    text-decoration: none;
     color: var(--color-text);
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    line-height: 1;
+    text-decoration: none;
   }
 
   .header__links {
     display: flex;
     align-items: center;
-    gap: 24px;
-    list-style: none;
+    gap: 18px;
   }
 
   .header__link {
-    font-size: 14px;
-    font-weight: 450;
     color: var(--color-text-secondary);
+    font-size: 12px;
+    font-weight: 460;
     text-decoration: none;
-    transition: color 0.2s ease;
-    letter-spacing: 0.01em;
   }
 
   .header__link:hover {
-    color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .header__language {
+    padding-left: 4px;
+    border-left: 1px solid var(--color-border);
   }
 
   @media (max-width: 860px) {
     .header__links {
-      gap: 14px;
-    }
-
-    .header__link {
-      font-size: 13px;
+      gap: 12px;
     }
   }
 
   @media (max-width: 640px) {
+    .header__nav {
+      min-height: 56px;
+    }
+
     .header__links {
       gap: 10px;
     }
 
-    .header__link:nth-child(4),
-    .header__link:nth-child(5) {
+    .header__links li:nth-child(4),
+    .header__links li:nth-child(5) {
       display: none;
     }
 
+    .header__link {
+      font-size: 11px;
+    }
+
     .header__logo {
-      font-size: 20px;
+      font-size: 12px;
     }
   }
 </style>
