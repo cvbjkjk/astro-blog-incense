@@ -1,272 +1,144 @@
 ---
-import { de } from '../../../i18n/de-content';
 import Layout from '../../../layouts/BaseLayout.astro';
 
-const t = de.xiangwan;
-
 const formulas = [
-  { name_cn: "青麟髓", name_en: "Qing Lin Sui", note: "Neu · 凉意突出", desc: "Die neueste Rezeptur mit auffallend kühler, klarer Öffnung — zum Genießen bei steigender Temperatur.", source: "Neue Veröffentlichung", link: { href: "/de/blog/agarwood-king-of-incense/", label: "Mehr über Agarholz →" } },
-  { name_cn: "春月蝴蝶香", name_en: "Spring Moon Butterfly", note: "Nach Originalrezept", desc: "Eine sanfte frühlingsblumige Mischung, nach dem Originalrezept hergestellt.", source: "Basiert auf dem Originalrezept", link: { href: "/de/blog/agarwood-vs-sandalwood/", label: "Mehr über Sandelholz →" } },
-  { name_cn: "汉建宁宫中香", name_en: "Han Jianning Palace Incense", note: "Nach Originalrezept", desc: "Ein Palast-Räucherwerk aus der Han-Dynastie-Tradition — reich, warm und ausgewogen.", source: "Basiert auf dem Originalrezept", link: { href: "/de/materials/", label: "Räuchermaterialien entdecken →" } },
-  { name_cn: "旷野幽兰", name_en: "Wild Orchid of the Wilderness", note: "Eigene Kreation", desc: "Eine eigene Kreation — eine einsame Orchidee im offenen Feld: grün, still und ein wenig wild.", source: "Eigene Kreation", link: { href: "/de/blog/art-of-blending-incense/", label: "Mehr über das Mischen →" } },
-  { name_cn: "寿阳公主梅花香", name_en: "Princess Shouyang Plum Blossom", note: "Nach Originalrezept", desc: "Pflaumenblüten-Räucherwerk in der Tradition der Prinzessin Shouyang — frisch, kühl und poetisch.", source: "Basiert auf dem Originalrezept", link: { href: "/de/blog/incense-tools-utensils/", label: "Mehr über Räucherwerkzeuge →" } },
-  { name_cn: "荀令十里香", name_en: "Xun Ling's Ten-Mile Fragrance", note: "Nach Originalrezept", desc: "Der legendäre Duft, der zehn Li lang anhalten soll — verfeinert und langlebig.", source: "Basiert auf dem Originalrezept", link: { href: "/de/blog/history-of-chinese-incense/", label: "Die Geschichte des chinesischen Räucherns →" } },
-  { name_cn: "莉莉玛莲", name_en: "Lili Marleen", note: "Eigene Kreation", desc: "Eine eigene Mischung, Marlene Dietrich gewidmet — einer unersetzlichen Legende der Leinwand: rauchig, magnetisch, unvergesslich.", source: "Eigene Kreation, Marlene Dietrich gewidmet", link: { href: "/de/blog/how-to-heat-incense-pellets/", label: "Räucherkugeln richtig erhitzen →" } },
+  { nameCn: "青麟髓", nameEn: "Qing Lin Sui", status: "Neue Rezeptur", note: "Ein kühler, klarer Auftakt, der sich mit steigender Temperatur verändert." },
+  { nameCn: "春月蝴蝶香", nameEn: "Spring Moon Butterfly", status: "Historische Referenz", note: "Ein leicht blumiges Profil, nah an einer historischen Vorlage." },
+  { nameCn: "汉建宁宫中香", nameEn: "Han Jianning Palace Incense", status: "Historische Referenz", note: "Ein warmes, ausgewogenes Profil aus einer Han-zeitlichen Tradition." },
+  { nameCn: "旷野幽兰", nameEn: "Wild Orchid of the Wilderness", status: "Eigene Kreation", note: "Grün, still und leicht ungezähmt." },
+  { nameCn: "寿阳公主梅花香", nameEn: "Princess Shouyang Plum Blossom", status: "Historische Referenz", note: "Ein Pflaumenblütenprofil mit kühlem ersten Eindruck." },
+  { nameCn: "荀令十里香", nameEn: "Xun Ling's Ten-Mile Fragrance", status: "Historische Referenz", note: "Ein anhaltendes Profil, benannt nach einer bekannten historischen Anekdote." },
+  { nameCn: "莉莉玛莲", nameEn: "Lili Marleen", status: "Eigene Kreation", note: "Eine rauchige, intime Mischung als Widmung an Marlene Dietrich." },
 ];
 
 const images = [
-  { src: "/images/xiangwan-01.jpg", alt: "Von Hand gerollte Räucherkugeln (Xiang Wan)" },
-  { src: "/images/xiangwan-02.jpg", alt: "Von Hand gerollte Räucherkugeln — Nahaufnahme" },
-  { src: "/images/xiangwan-03.jpg", alt: "Von Hand gerollte Räucherkugeln, bereit für den Ofen" },
+  { src: "/images/xiangwan-02.jpg", alt: "Nahaufnahme von handgeformten Räucherpellets" },
+  { src: "/images/xiangwan-03.jpg", alt: "Handgeformte Räucherpellets für ein elektrisches Stövchen" },
+  { src: "/images/xiangwan-01.jpg", alt: "Handgeformte Räucherpellets in einer Metallschale" },
 ];
 ---
 
 <Layout
-  title="Handgerollte Räucherkugeln (Xiang Wan 香丸) — Traditionelle chinesische Rezepturen | naturalincense.de"
-  description="Handgerollte chinesische Räucherkugeln (Xiang Wan) für elektrische Duftlampen. Sieben traditionelle und originelle Rezepturen — Qing Lin Sui, Spring Moon Butterfly, Han Jianning Palace und mehr. Bei 100–120 °C starten, langsam auf 180–200 °C steigern."
+  title="Räucherpellets — Handgeformtes Xiang Wan für elektrische Stövchen | naturalincense.de"
+  description="Handgeformte Räucherpellets (Xiang Wan) für temperaturgeregelte elektrische Stövchen. Sieben historische Referenzen und eigene Rezepturen. Bei 100–120 °C beginnen und die Temperatur langsam erhöhen."
   ogImage="/images/xiangwan-01.jpg"
 >
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "Handgerollte Räucherkugeln (Xiang Wan 香丸)",
-    "description": "Handgerollte chinesische Räucherkugeln für elektrische Duftlampen. Sieben traditionelle und originelle Rezepturen, in kleinen Mengen aus gemahlenen Pflanzen und Harzen hergestellt.",
-    "image": images.map((i) => `https://naturalincense.de${i.src}`),
+    "name": "Handgeformte Räucherpellets (Xiang Wan 香丸)",
+    "description": "Handgeformte Räucherpellets für elektrische Stövchen aus gemahlenen Pflanzenstoffen und Harzen.",
+    "image": images.map((image) => `https://naturalincense.de${image.src}`),
     "brand": { "@type": "Brand", "name": "INCENSE" },
     "offers": {
       "@type": "Offer",
-      "availability": "https://schema.org/InStock",
+      "availability": "https://schema.org/LimitedAvailability",
       "priceCurrency": "EUR",
       "price": "12.00",
-      "priceValidUntil": "2027-12-31",
       "url": "https://naturalincense.de/de/xiang-wan/"
     }
   })} />
 
   <section class="product">
     <div class="container product__layout">
-      <div class="product__gallery" data-gallery>
-        <div class="product__carousel">
-          <div class="product__main-image" data-main-image>
-            {images.map((img, i) => (
-              <img src={img.src} alt={img.alt} class={i === 0 ? "is-active" : ""} data-slide />
-            ))}
-          </div>
-          <button class="product__arrow product__arrow--prev" type="button" data-prev aria-label="Vorheriges Bild">‹</button>
-          <button class="product__arrow product__arrow--next" type="button" data-next aria-label="Nächstes Bild">›</button>
-          <div class="product__dots" data-dots>
-            {images.map((img, i) => (
-              <button class="product__dot" data-dot={i} aria-label={`Bild ${i + 1}`}></button>
-            ))}
-          </div>
-        </div>
-        <div class="product__thumbs">
-          {images.map((img, i) => (
-            <button class={`product__thumb${i === 0 ? " is-active" : ""}`} data-thumb={i} aria-label={img.alt}>
-              <img src={img.src} alt="" />
-            </button>
-          ))}
+      <div class="product__gallery">
+        <figure class="product__main-image">
+          <img src={images[0].src} alt={images[0].alt} fetchpriority="high" />
+        </figure>
+        <div class="product__details" aria-label="Weitere Ansichten der Räucherpellets">
+          {images.slice(1).map((image) => <img src={image.src} alt={image.alt} loading="lazy" />)}
         </div>
       </div>
 
       <div class="product__info">
-        <p class="product__type">{t.productType}</p>
-        <h1 class="product__name">{t.productName}</h1>
-        <p class="product__notes">{t.productNotes}</p>
-        <p class="product__desc" set:html={t.productDesc}></p>
+        <p class="kicker">Xiang Wan / für elektrische Stövchen</p>
+        <h1>Räucherpellets <span>香丸</span></h1>
+        <p class="product__intro">
+          Kleine Pellets aus gemahlenen Pflanzenstoffen und Harzen. Keine Holzkohle. Keine synthetischen Duftöle. Sanft auf einem temperaturgeregelten elektrischen Stövchen erhitzen.
+        </p>
 
-        <div class="product__meta">
-          <div class="product__meta-item">
-            <span class="product__meta-label">{t.metaFormulas}</span>
-            <span class="product__meta-value" set:html={t.metaFormulasValue}></span>
-          </div>
-          <div class="product__meta-item">
-            <span class="product__meta-label">Preis</span>
-            <span class="product__meta-value">€12,00 / 10 g</span>
-          </div>
-          <div class="product__meta-item">
-            <span class="product__meta-label">{t.metaUse}</span>
-            <span class="product__meta-value">{t.metaUseValue}</span>
-          </div>
-          <div class="product__meta-item">
-            <span class="product__meta-label">{t.metaHeating}</span>
-            <span class="product__meta-value" set:html={t.metaHeatingValue}></span>
-          </div>
-        </div>
+        <dl class="product__record">
+          <div><dt>Rezepturen</dt><dd>7 / historische Referenzen und eigene Kreationen</dd></div>
+          <div><dt>Preis</dt><dd>€12,00 / 10 g</dd></div>
+          <div><dt>Gerät</dt><dd>Temperaturgeregeltes elektrisches Stövchen</dd></div>
+          <div><dt>Temperatur</dt><dd>Bei 100–120 °C beginnen; langsam auf 180–200 °C erhöhen</dd></div>
+        </dl>
 
-        <a href="/de/contact/" class="product__cta">{t.cta}</a>
-        <p class="product__cta-note">{t.ctaNote}</p>
-
-        <details class="product__accordion">
-          <summary class="product__accordion-title">{t.accordion1Title}</summary>
-          <div class="product__accordion-body"><p>{t.accordion1Body}</p></div>
-        </details>
-        <details class="product__accordion">
-          <summary class="product__accordion-title">{t.accordion2Title}</summary>
-          <div class="product__accordion-body"><p>{t.accordion2Body}</p></div>
-        </details>
+        <a href="/de/anfragen/?source=pellets" class="btn btn-primary product__cta">Aktuelle Verfügbarkeit anfragen</a>
+        <p class="product__cta-note">Frage nach den aktuell hergestellten Rezepturen und nenne das Stövchen, das du verwendest.</p>
       </div>
     </div>
   </section>
 
-  <section class="formulas">
+  <section class="product-note" aria-labelledby="product-note-title">
+    <div class="container product-note__layout">
+      <p class="kicker">Notiz zur Herstellung</p>
+      <div>
+        <h2 id="product-note-title">Eine Notiz zu den Pellets.</h2>
+        <p>Nach Rückmeldungen zur ersten Charge wurden die Pellets kleiner. Dadurch lässt sich eine Sitzung leichter Stück für Stück anpassen. Der Temperaturbereich ist ein Anhaltspunkt, keine starre Regel: Jedes Stövchen öffnet eine Mischung etwas anders.</p>
+        <p>Als praktischer Anfang gilt: niedrig starten und die Temperatur erst erhöhen, wenn der erste Eindruck Zeit hatte, sich zu setzen.</p>
+        <a href="/de/blog/how-to-heat-incense-pellets/" class="section-link">Heizanleitung lesen <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="formulas" aria-labelledby="formulas-title">
     <div class="container">
-      <h2 class="formulas__title">{t.formulasTitle}</h2>
-      <p class="formulas__intro">{t.formulasIntro}</p>
-      <div class="formulas__grid">
-        {formulas.map((f) => (
-          <article class="formula-card">
-            <div class="formula-card__head">
-              <h3 class="formula-card__name">{f.name_cn} · {f.name_en}</h3>
-              <span class="formula-card__tag">{f.note}</span>
+      <div class="formulas__heading">
+        <p class="kicker">Rezepturindex</p>
+        <h2 id="formulas-title">Sieben benannte Rezepturen.</h2>
+        <p>Einige beziehen sich auf historische Quellen, andere sind eigene Kompositionen. Die Namen erleichtern das Gespräch in einer Anfrage.</p>
+      </div>
+      <div class="formulas__list">
+        {formulas.map((formula, index) => (
+          <article class="formula-row">
+            <p class="formula-row__number" aria-hidden="true">0{index + 1}</p>
+            <div>
+              <h3>{formula.nameCn} <span>· {formula.nameEn}</span></h3>
+              <p class="formula-row__status">{formula.status}</p>
             </div>
-            <p class="formula-card__desc">{f.desc}</p>
-            <p class="formula-card__source">{f.source}</p>
-            {f.link && (
-              <a href={f.link.href} class="formula-card__link">{f.link.label}</a>
-            )}
+            <p class="formula-row__note">{formula.note}</p>
           </article>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="story">
-    <div class="container">
-      <div class="story__inner">
-        <h2 class="story__title">{t.storyTitle}</h2>
-        <div class="story__body">
-          <p>{t.storyP1}</p>
-          <p set:html={t.storyP2}></p>
-          <p>{t.storyP3}</p>
-          <p class="story__guide-link">Für eine vollständige Schritt-für-Schritt-Anleitung lies <a href="/de/blog/how-to-heat-incense-pellets/">Räucherkugeln richtig erhitzen</a> in unserem Journal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- More from the Journal -->
-  <section class="journal-more">
-    <div class="container">
-      <h2 class="journal-more__title">Mehr aus dem Journal</h2>
-      <div class="journal-more__list">
-        <a href="/de/blog/history-of-chinese-incense/" class="journal-more__item">
-          <span class="journal-more__icon">📖</span>
-          <span class="journal-more__text">Eine kurze Geschichte des chinesischen Räucherns</span>
-        </a>
-        <a href="/de/blog/art-of-blending-incense/" class="journal-more__item">
-          <span class="journal-more__icon">📖</span>
-          <span class="journal-more__text">Die Kunst des Räuchermischens</span>
-        </a>
-        <a href="/de/blog/agarwood-vs-sandalwood/" class="journal-more__item">
-          <span class="journal-more__icon">📖</span>
-          <span class="journal-more__text">Agarholz vs. Sandelholz</span>
-        </a>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .product { padding: 48px 0 64px; }
-  .product__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-  .product__gallery { position: sticky; top: 96px; }
-  .product__main-image { position: relative; aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border); }
-  .product__main-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s var(--ease-out); }
-  .product__main-image img.is-active { opacity: 1; }
-  .product__carousel { position: relative; }
-  .product__arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.6); background: rgba(0,0,0,0.25); backdrop-filter: blur(4px); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
-  .product__arrow:hover { background: rgba(0,0,0,0.45); }
-  .product__arrow--prev { left: 14px; }
-  .product__arrow--next { right: 14px; }
-  .product__dots { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; z-index: 2; }
-  .product__dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; background: rgba(255,255,255,0.5); cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
-  .product__dot.is-active { background: #fff; transform: scale(1.25); }
-  .product__thumbs { display: flex; gap: 10px; margin-top: 12px; }
-  .product__thumb { width: 72px; height: 90px; border-radius: var(--radius-sm); overflow: hidden; border: 2px solid var(--color-border); background: var(--color-surface); cursor: pointer; padding: 0; }
-  .product__thumb.is-active { border-color: var(--color-accent); }
-  .product__thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .product__info { display: flex; flex-direction: column; gap: 14px; }
-  .product__type { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); }
-  .product__name { font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; }
-  .product__notes { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); }
-  .product__desc { font-size: 15px; line-height: 1.7; color: var(--color-text-secondary); }
-  .product__meta { border-top: 1px solid var(--color-border); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
-  .product__meta-item { display: flex; gap: 12px; font-size: 13px; }
-  .product__meta-label { flex-shrink: 0; width: 110px; color: var(--color-text-tertiary); }
-  .product__meta-value { color: var(--color-text); }
-  .product__cta { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; background: var(--color-accent); color: #fff; font-size: 14px; font-weight: 500; border-radius: var(--radius-md); text-decoration: none; transition: background 0.25s var(--ease-out); margin-top: 8px; }
-  .product__cta:hover { background: var(--color-accent-hover); color: #fff; }
-  .product__cta-note { font-size: 12px; color: var(--color-text-tertiary); margin-top: -6px; }
-  .product__accordion { border-bottom: 1px solid var(--color-border); }
-  .product__accordion:first-of-type { border-top: 1px solid var(--color-border); }
-  .product__accordion-title { padding: 16px 4px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--color-text); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-  .product__accordion-title::-webkit-details-marker { display: none; }
-  .product__accordion-title::after { content: "+"; font-size: 18px; color: var(--color-accent); transition: transform 0.25s var(--ease-out); }
-  .product__accordion[open] .product__accordion-title::after { transform: rotate(45deg); }
-  .product__accordion-body { padding: 0 4px 16px; font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); }
-  .formulas { padding: 64px 0; }
-  .formulas__title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px; }
-  .formulas__intro { font-size: 15px; line-height: 1.7; color: var(--color-text-secondary); max-width: 62ch; margin-bottom: 32px; }
-  .formulas__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .formula-card { padding: 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
-  .formula-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-  .formula-card__name { font-size: 16px; }
-  .formula-card__tag { flex-shrink: 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); border: 1px solid var(--color-accent); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
-  .formula-card__desc { font-size: 13px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 10px; }
-  .formula-card__source { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-tertiary); }
-  .formula-card__link { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 500; color: var(--color-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
-  .formula-card__link:hover { border-color: var(--color-accent); }
-  .story { padding: 64px 0 96px; background: var(--color-surface-subtle); }
-  .story__inner { max-width: 720px; margin: 0 auto; }
-  .story__title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 20px; text-align: center; }
-  .story__body { font-size: 15px; line-height: 1.85; color: var(--color-text-secondary); }
-  .story__body p { margin-bottom: 14px; }
-  .story__body strong { color: var(--color-text); font-weight: 550; }
-  .story__guide-link { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--color-border); }
-  .story__guide-link a { color: var(--color-accent); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--color-accent); }
-  .journal-more { padding: 64px 0 96px; }
-  .journal-more__title { font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 24px; text-align: center; }
-  .journal-more__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
-  .journal-more__item { display: flex; align-items: center; gap: 12px; padding: 20px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); text-decoration: none; transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out); }
-  .journal-more__item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-  .journal-more__icon { font-size: 22px; flex-shrink: 0; }
-  .journal-more__text { font-size: 14px; font-weight: 500; color: var(--color-text); line-height: 1.4; }
-  @media (max-width: 768px) { .journal-more__list { grid-template-columns: 1fr; } }
-  @media (max-width: 900px) { .product__layout { grid-template-columns: 1fr; gap: 32px; } .product__gallery { position: static; } .formulas__grid { grid-template-columns: 1fr; } }
+  .product { padding: 48px 0 clamp(64px, 8vw, 104px); }
+  .product__layout { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.8fr); gap: clamp(40px, 8vw, 112px); align-items: start; }
+  .product__gallery { position: sticky; top: 84px; }
+  .product__main-image { margin: 0; overflow: hidden; border: 1px solid var(--color-border); }
+  .product__main-image img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .product__details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .product__details img { aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--color-border); }
+  .product__info { padding-top: 8px; }
+  .kicker { color: var(--color-accent); font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .product h1 { margin-top: 16px; }
+  .product h1 span { color: var(--color-text-secondary); font-family: var(--font-sans); font-size: 0.78em; letter-spacing: 0; }
+  .product__intro { margin-top: 22px; font-size: 16px; }
+  .product__record { margin-top: 30px; border-top: 1px solid var(--color-border); }
+  .product__record > div { display: grid; grid-template-columns: 118px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+  .product__record dt, .formula-row__number { color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .product__record dd { color: var(--color-text-secondary); font-size: 13px; line-height: 1.55; }
+  .product__cta { margin-top: 24px; }
+  .product__cta-note { margin-top: 10px; color: var(--color-text-tertiary); font-size: 12px; }
+  .product-note { padding: clamp(56px, 8vw, 94px) 0; background: var(--color-surface-subtle); }
+  .product-note__layout { display: grid; grid-template-columns: minmax(180px, 0.45fr) minmax(0, 0.75fr); gap: clamp(32px, 8vw, 130px); }
+  .product-note h2 { margin-bottom: 18px; }
+  .product-note div > p + p { margin-top: 14px; }
+  .section-link { display: inline-block; margin-top: 22px; color: var(--color-text); font-size: 13px; font-weight: 500; text-decoration: none; }
+  .section-link span { margin-left: 5px; color: var(--color-accent); }
+  .formulas { padding: clamp(64px, 8vw, 110px) 0; }
+  .formulas__heading > p:not(.kicker) { max-width: 57ch; margin-top: 16px; font-size: 15px; }
+  .formulas__heading h2 { margin-top: 14px; }
+  .formulas__list { margin-top: 38px; border-top: 1px solid var(--color-border); }
+  .formula-row { display: grid; grid-template-columns: 48px minmax(220px, 0.85fr) minmax(0, 1fr); gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--color-border); }
+  .formula-row h3 { font-size: 1.05rem; }
+  .formula-row h3 span { color: var(--color-text-secondary); font-family: var(--font-sans); font-size: 0.94em; font-weight: 450; letter-spacing: 0; }
+  .formula-row__status { margin-top: 5px; color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .formula-row__note { font-size: 14px; line-height: 1.55; }
+  @media (max-width: 820px) { .product__layout, .product-note__layout { grid-template-columns: 1fr; } .product__gallery { position: static; max-width: 520px; } }
+  @media (max-width: 560px) { .product { padding-top: 28px; } .product__record > div { grid-template-columns: 1fr; gap: 2px; } .formula-row { grid-template-columns: 34px 1fr; gap: 10px; } .formula-row__note { grid-column: 2; margin-top: 2px; } }
 </style>
-
-<script>
-  (() => {
-    const gallery = document.querySelector("[data-gallery]");
-    if (!gallery) return;
-    const slides = [...gallery.querySelectorAll("[data-slide]")];
-    const thumbs = [...gallery.querySelectorAll("[data-thumb]")];
-    const dots = [...gallery.querySelectorAll("[data-dot]")];
-    const prevBtn = gallery.querySelector("[data-prev]");
-    const nextBtn = gallery.querySelector("[data-next]");
-    const total = slides.length;
-    let current = 0;
-    let timer = null;
-    function goTo(index) {
-      current = (index + total) % total;
-      slides.forEach((s, i) => s.classList.toggle("is-active", i === current));
-      thumbs.forEach((t, i) => t.classList.toggle("is-active", i === current));
-      dots.forEach((d, i) => d.classList.toggle("is-active", i === current));
-    }
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-    function restart() { if (timer) clearInterval(timer); timer = setInterval(next, 5000); }
-    restart();
-    gallery.addEventListener("mouseenter", () => { if (timer) clearInterval(timer); });
-    gallery.addEventListener("mouseleave", restart);
-    thumbs.forEach((t, i) => t.addEventListener("click", () => { goTo(i); restart(); }));
-    dots.forEach((d, i) => d.addEventListener("click", () => { goTo(i); restart(); }));
-    prevBtn?.addEventListener("click", () => { prev(); restart(); });
-    nextBtn?.addEventListener("click", () => { next(); restart(); });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { prev(); restart(); }
-      if (e.key === "ArrowRight") { next(); restart(); }
-    });
-  })();
-</script>
