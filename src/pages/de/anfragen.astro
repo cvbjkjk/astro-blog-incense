@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InquiryForm from '../../components/InquiryForm.astro';
+---
+
+<BaseLayout
+  title="Aktuelle Räucherkugeln anfragen — INCENSE"
+  description="Frage aktuelle handgerollte Räucherkugeln, Rezepturen und die nächsten Schritte für kleine Chargen an."
+>
+  <section class="inquiry-hero">
+    <div class="container inquiry-hero__inner">
+      <p class="inquiry-hero__eyebrow">Von Hand gerollt · Kleine Mengen</p>
+      <h1>Aktuelle Räucherkugeln anfragen</h1>
+      <p>
+        Jede Charge wird in kleinen Mengen von Hand gerollt. Teile uns mit, welche Rezeptur dich interessiert und
+        wo du wohnst; wir bestätigen Verfügbarkeit und die nächsten Schritte vor jeder Bestellung.
+      </p>
+    </div>
+  </section>
+
+  <section class="inquiry-content">
+    <div class="container inquiry-content__grid">
+      <div class="inquiry-content__context">
+        <h2>So funktioniert es</h2>
+        <ol>
+          <li>Wähle eine Rezeptur, eine Menge und dein Land oder deine Region.</li>
+          <li>Wir bestätigen die aktuelle Verfügbarkeit und beantworten praktische Fragen.</li>
+          <li>Wenn der Zeitpunkt passt, teilen wir dir die nächsten Schritte für deine Bestellung in kleiner Menge mit.</li>
+        </ol>
+        <p class="inquiry-content__note">
+          Räucherkugeln sind für eine temperaturregelbare elektrische Räucherlampe gedacht. Wenn du noch unsicher bist,
+          wähle „Noch nicht sicher“ und erzähle uns kurz, was dir gefällt.
+        </p>
+        <a class="inquiry-content__guide" href="/de/blog/how-to-heat-incense-pellets/">Anleitung zum Erhitzen von Räucherkugeln lesen →</a>
+      </div>
+      <div class="inquiry-content__form-card">
+        <InquiryForm lang="de" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .inquiry-hero { padding: 72px 0 48px; }
+  .inquiry-hero__inner { max-width: 760px; }
+  .inquiry-hero__eyebrow { color: var(--color-accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; margin-bottom: 14px; text-transform: uppercase; }
+  .inquiry-hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 16px; }
+  .inquiry-hero p { color: var(--color-text-secondary); font-size: 17px; line-height: 1.7; max-width: 58ch; }
+  .inquiry-content { padding: 16px 0 96px; }
+  .inquiry-content__grid { align-items: start; display: grid; gap: 56px; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); }
+  .inquiry-content__context { padding-top: 24px; }
+  .inquiry-content__context h2 { font-size: 1.45rem; margin-bottom: 16px; }
+  .inquiry-content__context ol { color: var(--color-text-secondary); display: grid; gap: 14px; line-height: 1.7; margin: 0 0 28px; padding-left: 22px; }
+  .inquiry-content__note { border-left: 2px solid var(--color-accent); color: var(--color-text-secondary); font-size: 14px; line-height: 1.7; margin: 0 0 24px; padding-left: 16px; }
+  .inquiry-content__guide { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+  .inquiry-content__form-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 36px; }
+  @media (max-width: 800px) { .inquiry-content__grid { gap: 32px; grid-template-columns: 1fr; } .inquiry-content__form-card { padding: 28px 20px; } }
+</style>
