@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -9,818 +9,173 @@ const posts = (await getCollection('blog'))
   .slice(0, 3);
 
 const materials = [
-  {
-    name: "Agarwood",
-    latin: "Aquilaria sinensis",
-    image: "/images/material-agarwood.jpg",
-    desc: "The most precious incense material, formed when resin-infused heartwood undergoes years of natural transformation.",
-  },
-  {
-    name: "Sandalwood",
-    latin: "Santalum album",
-    image: "/images/material-sandalwood.jpg",
-    desc: "A warm, creamy wood with a sweet balsamic profile. Prized in meditation for its grounding presence.",
-  },
-  {
-    name: "Frankincense",
-    latin: "Boswellia sacra",
-    image: "/images/material-frankincense.jpg",
-    desc: "An aromatic resin with citrus-pine notes, used for thousands of years in spiritual ceremonies across cultures.",
-  },
-  {
-    name: "Clove Bud",
-    latin: "Syzygium aromaticum",
-    image: "/images/material-clove.jpg",
-    desc: "Dried flower buds that bring a sharp, warming spice to incense blends. A key note in many traditional formulas.",
-  },
+  { name: "Agarwood", latin: "Aquilaria sinensis", desc: "Resinous wood used for depth and change over heat." },
+  { name: "Sandalwood", latin: "Santalum album", desc: "A soft wood note that often gives a blend structure." },
+  { name: "Frankincense", latin: "Boswellia sacra", desc: "A resin material with a bright, balsamic profile." },
+  { name: "Clove bud", latin: "Syzygium aromaticum", desc: "A dried spice used sparingly for warmth and lift." },
 ];
 ---
 
-<BaseLayout
-  title="Chinese Incense — History, Materials & Culture | naturalincense.de"
-  description={SITE_DESCRIPTION}
->
-  <!-- Announcement Banner -->
-  <div class="announcement">
-    <div class="container">
-      <p class="announcement__text">Free shipping on orders $60+ · Hand rolled botanicals, shipped worldwide</p>
-    </div>
-  </div>
-
-  <!-- Hero -->
+<BaseLayout title="Chinese Incense — Pellets, Materials & Notes | naturalincense.de" description={SITE_DESCRIPTION}>
   <section class="hero">
-    <div class="hero__visual">
-      <img src="/images/hero-home.jpg" alt="Incense smoke in a quiet meditation space" />
-      <div class="hero__overlay"></div>
-    </div>
-    <div class="container hero__content">
-      <p class="hero__eyebrow">Journal of Chinese Incense</p>
-      <h1 class="hero__title">The Art of <em class="hero__em">Incense</em></h1>
-      <p class="hero__sub">
-        A curated exploration of China's incense heritage — from wild-harvested agarwood to century-old blending traditions that shaped a culture.
-      </p>
-      <div class="hero__actions">
-        <a href="/blog" class="btn btn-primary">Explore the Journal</a>
-        <a href="/materials" class="btn btn-ghost">Discover Materials</a>
+    <div class="container hero__layout">
+      <div class="hero__copy">
+        <p class="kicker">Incense pellets / inquiry-led</p>
+        <h1>Incense pellets<br /><span>for slow heating.</span></h1>
+        <p class="hero__intro">
+          Ground botanicals and resins, hand-rolled for electric warmers. Formulas and availability are confirmed one enquiry at a time.
+        </p>
+        <div class="hero__actions">
+          <a href="/inquire/?source=home" class="btn btn-primary">Ask about current availability</a>
+          <a href="/xiang-wan/" class="hero__text-link">View pellets &amp; heating notes <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="hero__note">10 g / electric warmer / begin at 100–120°C</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Brand Pillars -->
-  <section class="pillars">
-    <div class="container">
-      <div class="pillars__grid">
-        <article class="pillar">
-          <div class="pillar__icon">🌿</div>
-          <h3 class="pillar__title">Botanicals Only</h3>
-          <p class="pillar__desc">Purely plant-based materials — no synthetic fillers, no artificial perfume oils.</p>
-        </article>
-        <article class="pillar">
-          <div class="pillar__icon">🤲</div>
-          <h3 class="pillar__title">Hand Rolled</h3>
-          <p class="pillar__desc">Artisanal craft in every stick, following traditions refined over centuries.</p>
-        </article>
-        <article class="pillar">
-          <div class="pillar__icon">🌫️</div>
-          <h3 class="pillar__title">Ingredient Honest</h3>
-          <p class="pillar__desc">What you see is what you breathe — full transparency in every blend.</p>
-        </article>
-      </div>
+      <figure class="hero__figure">
+        <img src="/images/xiangwan-02.jpg" alt="Close detail of hand-rolled incense pellets" fetchpriority="high" />
+        <figcaption>Incense pellets / close detail</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- Featured Materials -->
-  <section class="materials">
-    <div class="container">
-      <div class="section-label">
-        <span class="section-label__line"></span>
-        <span class="section-label__text">Raw Materials</span>
+  <section class="working-notes" aria-labelledby="working-notes-title">
+    <div class="container working-notes__layout">
+      <div>
+        <p class="kicker">How this work is offered</p>
+        <h2 id="working-notes-title">A small working rhythm.</h2>
       </div>
-      <h2 class="section-title">Essential Incense Materials</h2>
-      <p class="section-desc">Four foundational ingredients that define the Chinese incense tradition.</p>
-      <div class="materials__grid">
-        {materials.map((m, i) => (
-          <article class="material-card" style={`--reveal-delay: ${i * 0.1}s`}>
-            <div class="material-card__image">
-              <img src={m.image} alt="" loading="lazy" />
-              <div class="material-card__overlay"></div>
-              <span class="material-card__initial">{m.name[0]}</span>
+      <dl class="working-notes__list">
+        <div>
+          <dt>Materials</dt>
+          <dd>Ground botanicals and resins; no charcoal or synthetic perfume oils.</dd>
+        </div>
+        <div>
+          <dt>Use</dt>
+          <dd>Made for a temperature-controlled electric warmer, not direct flame.</dd>
+        </div>
+        <div>
+          <dt>Availability</dt>
+          <dd>Formulas are offered in small runs. Ask before planning an order.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="materials" aria-labelledby="materials-title">
+    <div class="container">
+      <div class="section-heading">
+        <p class="kicker">Material index</p>
+        <h2 id="materials-title">Four materials often met in the notes.</h2>
+        <p>Names are a starting point, not a substitute for the way a finished blend develops on the warmer.</p>
+      </div>
+      <div class="materials__list">
+        {materials.map((material, index) => (
+          <article class="material-row">
+            <p class="material-row__number" aria-hidden="true">0{index + 1}</p>
+            <div>
+              <h3>{material.name}</h3>
+              <p class="material-row__latin">{material.latin}</p>
             </div>
-            <div class="material-card__body">
-              <h3 class="material-card__name">{m.name}</h3>
-              <p class="material-card__latin">{m.latin}</p>
-              <p class="material-card__desc">{m.desc}</p>
-            </div>
+            <p class="material-row__desc">{material.desc}</p>
           </article>
         ))}
       </div>
+      <a href="/materials/" class="section-link">Read the material index <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
-  <!-- Philosophy -->
-  <section class="philosophy">
-    <div class="container">
-      <div class="philosophy__card">
-        <blockquote class="philosophy__quote">
-          <p>Incense is not merely fragrance — it is a bridge between the material and the spiritual, a practice that cultivates stillness in a restless world.</p>
-        </blockquote>
-        <p class="philosophy__attribution">From the ancient <cite>Xiang Pu</cite> (Incense Manuals) of the Song Dynasty</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Latest Posts -->
   {posts.length > 0 && (
-    <section class="latest">
+    <section class="journal" aria-labelledby="journal-title">
       <div class="container">
-        <h2 class="section-title">Latest Writings</h2>
-        <div class="latest__grid">
-          {posts.map((post, i) => (
-            <article class="post-card" style={`--reveal-delay: ${i * 0.1}s`}>
-              <a href={`/blog/${post.id}/`} class="post-card__link" aria-label={post.data.title}>
-                <div class="post-card__image">
-                  {post.data.heroImage ? (
-                    <img src={post.data.heroImage} alt="" loading="lazy" />
-                  ) : (
-                    <div class="post-card__placeholder">
-                      <span>INCENSE</span>
-                    </div>
-                  )}
-                </div>
-              </a>
-              <div class="post-card__body">
-                <time class="post-card__date">
-                  <FormattedDate date={post.data.pubDate} />
-                </time>
-                <h3 class="post-card__title">
-                  <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-                </h3>
-                {post.data.description && (
-                  <p class="post-card__desc">{post.data.description}</p>
-                )}
-              </div>
-            </article>
-          ))}
+        <div class="section-heading">
+          <p class="kicker">Journal</p>
+          <h2 id="journal-title">Notes for the warmer.</h2>
         </div>
-        <div class="latest__action">
-          <a href="/blog" class="btn btn-ghost">View All Articles</a>
+        <div class="journal__grid">
+          <article class="journal__featured">
+            <time><FormattedDate date={posts[0].data.pubDate} /></time>
+            <h3><a href={`/blog/${posts[0].id}/`}>{posts[0].data.title}</a></h3>
+            {posts[0].data.description && <p>{posts[0].data.description}</p>}
+            <a href={`/blog/${posts[0].id}/`} class="journal__read">Read note <span aria-hidden="true">→</span></a>
+          </article>
+          {posts.slice(1).length > 0 && (
+            <div class="journal__list">
+              {posts.slice(1).map((post) => (
+                <article class="journal__item">
+                  <time><FormattedDate date={post.data.pubDate} /></time>
+                  <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+                  {post.data.description && <p>{post.data.description}</p>}
+                </article>
+              ))}
+            </div>
+          )}
         </div>
+        <a href="/blog/" class="section-link">All journal notes <span aria-hidden="true">→</span></a>
       </div>
     </section>
   )}
 
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="container">
-      <div class="section-label">
-        <span class="section-label__line"></span>
-        <span class="section-label__text">Good to Know</span>
+  <section class="newsletter" aria-labelledby="newsletter-title">
+    <div class="container newsletter__layout">
+      <div>
+        <p class="kicker">Occasional correspondence</p>
+        <h2 id="newsletter-title">Notes on materials, blends and use.</h2>
       </div>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq__list">
-        <details class="faq__item">
-          <summary class="faq__question">What makes Chinese incense different from other traditions?</summary>
-          <div class="faq__answer">
-            <p>Chinese incense emphasizes whole botanicals and resins rather than synthetic fragrances. Blends follow the jun-chen (sovereign-minister) principle from classical medicine, where each ingredient plays a defined role — anchoring, supporting, or harmonizing the composition.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">How do I burn incense safely?</summary>
-          <div class="faq__answer">
-            <p>Always burn in a ventilated room, keep the burner at arm's length, use a stable heat-safe holder, and never leave burning incense unattended. A small tray or ash-catcher underneath keeps surfaces clean.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Are there any hidden ingredients?</summary>
-          <div class="faq__answer">
-            <p>Never. Traditional Chinese incense uses ground botanicals, resins, and a natural tree-bark binder — no charcoal, no synthetic perfume oils. What you see is what you breathe.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Which materials should a beginner start with?</summary>
-          <div class="faq__answer">
-            <p>Sandalwood is the classic starting point — warm, steady, and forgiving. Agarwood offers a deeper, more complex experience for when you're ready. Explore our <a href="/materials">materials directory</a> to learn more.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Do I need a special holder? Will ash make a mess?</summary>
-          <div class="faq__answer">
-            <p>Any stable, heat-safe holder works. Ash is normal — placing a small tray or paper ash-catcher underneath helps protect surfaces. Every first order includes a mini holder so you can begin the ritual immediately.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">How should I store my incense?</summary>
-          <div class="faq__answer">
-            <p>Keep incense in a cool, dry place away from direct sunlight. Store sticks upright in a sealed container to preserve their fragrance — humidity is the enemy of a clean burn.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Is incense safe for pets, children, or people with sensitivities?</summary>
-          <div class="faq__answer">
-            <p>Always burn in a ventilated room and avoid direct exposure to faces. If you, your children, or your pets are sensitive, start with shorter burns and keep the space airy. Never leave burning incense unattended.</p>
-          </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">Can I learn more about how incense is made?</summary>
-          <div class="faq__answer">
-            <p>Yes — explore the <a href="/blog">Journal</a> for in-depth articles on materials, ratios, and burn behavior, or the <a href="/materials">materials directory</a> for a closer look at each botanical and resin.</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Newsletter -->
-  <section class="newsletter">
-    <div class="container">
-      <div class="newsletter__inner">
-        <h2 class="newsletter__title">Notes from the Incense Journal</h2>
-        <p class="newsletter__desc">Occasional letters on materials, blends, and the quiet art of burning — no spam, ever.</p>
-        <form class="newsletter__form" action="https://naturalincense.substack.com/api/v1/free?nojs=true" method="POST" target="_blank">
-          <input type="email" name="email" class="newsletter__input" placeholder="Email address" required />
-          <button type="submit" class="newsletter__btn">Sign up</button>
-        </form>
-      </div>
+      <form class="newsletter__form" action="https://naturalincense.substack.com/api/v1/free?nojs=true" method="POST" target="_blank">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" type="email" name="email" class="newsletter__input" placeholder="Email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* ---- Announcement Banner ---- */
-  .announcement {
-    background: var(--color-accent);
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  .announcement__text {
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: #fff;
-    margin: 0;
-    max-width: none;
-  }
-
-  /* ---- Hero ---- */
-  .hero {
-    position: relative;
-    min-height: 78dvh;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-  }
-
-  .hero__visual {
-    position: absolute;
-    inset: 0;
-  }
-
-  .hero__visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(28, 38, 32, 0.35) 0%, rgba(28, 38, 32, 0.2) 45%, rgba(247, 236, 212, 0.95) 100%);
-  }
-
-  .hero__content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 28vh 0 48px;
-    color: #fff;
-  }
-
-  .hero__eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: #f2e4c8;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .hero__title {
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    line-height: 1.05;
-    font-weight: 400;
-    color: #fff;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-  }
-
-  .hero__em {
-    font-style: italic;
-    font-weight: 400;
-    color: #f2e4c8;
-    font-size: 1.05em;
-  }
-
-  .hero__sub {
-    font-size: 16px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.92);
-    max-width: 50ch;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero__actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .hero .btn-ghost {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(4px);
-  }
-
-  .hero .btn-ghost:hover {
-    color: #fff;
-    border-color: #fff;
-    background: rgba(0, 0, 0, 0.25);
-  }
-
-  @media (max-width: 640px) {
-    .hero__content {
-      padding: 20vh 0 32px;
-    }
-  }
-
-  /* ---- Brand Pillars ---- */
-  .pillars {
-    padding: 64px 0;
-  }
-
-  .pillars__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-
-  .pillar {
-    text-align: center;
-    padding: 24px 16px;
-  }
-
-  .pillar__icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-  }
-
-  .pillar__title {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    color: var(--color-text);
-  }
-
-  .pillar__desc {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-    margin: 0 auto;
-    max-width: 30ch;
-  }
-
-  @media (max-width: 768px) {
-    .pillars__grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-  }
-
-  /* ---- Section Shared ---- */
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .section-label__line {
-    width: 32px;
-    height: 1px;
-    background: var(--color-accent);
-  }
-
-  .section-label__text {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin-bottom: 12px;
-  }
-
-  .section-desc {
-    font-size: 15px;
-    color: var(--color-text-secondary);
-    margin-bottom: 48px;
-  }
-
-  /* ---- Materials ---- */
-  .materials {
-    padding: 80px 0;
-  }
-
-  .materials__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-
-  .material-card {
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    overflow: hidden;
-    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
-    animation: fade-up 0.7s var(--ease-spring) both;
-    animation-delay: var(--reveal-delay, 0s);
-  }
-
-  .material-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .material-card__image {
-    aspect-ratio: 1;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .material-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s var(--ease-out);
-  }
-
-  .material-card:hover .material-card__image img {
-    transform: scale(1.05);
-  }
-
-  .material-card__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
-  }
-
-  .material-card__initial {
-    position: absolute;
-    bottom: 12px;
-    right: 16px;
-    font-size: 40px;
-    font-weight: 200;
-    color: rgba(255, 255, 255, 0.3);
-    font-family: var(--font-sans);
-    line-height: 1;
-  }
-
-  .material-card__body {
-    padding: 20px;
-  }
-
-  .material-card__name {
-    font-size: 16px;
-    font-weight: 550;
-    margin-bottom: 2px;
-  }
-
-  .material-card__latin {
-    font-size: 12px;
-    font-style: italic;
-    color: var(--color-text-tertiary);
-    margin-bottom: 10px;
-  }
-
-  .material-card__desc {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-  }
-
-  /* ---- Philosophy ---- */
-  .philosophy {
-    padding: 80px 0;
-  }
-
-  .philosophy__card {
-    padding: 64px 48px;
-    background: var(--color-surface);
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .philosophy__quote {
-    font-size: clamp(1.3rem, 2vw, 1.6rem);
-    line-height: 1.6;
-    color: var(--color-text);
-    font-weight: 400;
-    font-style: italic;
-    margin: 20px 0;
-  }
-
-  .philosophy__quote p {
-    color: inherit;
-    max-width: none;
-  }
-
-  .philosophy__attribution {
-    font-size: 13px;
-    color: var(--color-text-tertiary);
-    cite {
-      font-style: normal;
-    }
-  }
-
-  /* ---- Latest Posts ---- */
-  .latest {
-    padding: 80px 0;
-  }
-
-  .latest__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .post-card {
-    display: block;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
-    animation: fade-up 0.7s var(--ease-spring) both;
-    animation-delay: var(--reveal-delay, 0s);
-  }
-
-  .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .post-card__link {
-    display: block;
-    text-decoration: none;
-  }
-
-  .post-card__image {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-
-  .post-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s var(--ease-out);
-  }
-
-  .post-card:hover .post-card__image img {
-    transform: scale(1.05);
-  }
-
-  .post-card__placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-surface-subtle), var(--color-surface));
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--color-text-tertiary);
-  }
-
-  .post-card__body {
-    padding: 20px;
-  }
-
-  .post-card__date {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--color-text-tertiary);
-    letter-spacing: 0.05em;
-  }
-
-  .post-card__title {
-    font-size: 17px;
-    font-weight: 550;
-    margin: 6px 0 8px;
-    color: var(--color-text);
-  }
-
-  .post-card__title a {
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.2s var(--ease-out);
-  }
-
-  .post-card:hover .post-card__title a {
-    color: var(--color-accent);
-  }
-
-  .post-card__desc {
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--color-text-secondary);
-  }
-
-  .latest__action {
-    text-align: center;
-    margin-top: 48px;
-  }
-
-  /* ---- FAQ ---- */
-  .faq {
-    padding: 64px 0 96px;
-  }
-
-  .faq__list {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .faq__item {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .faq__item:first-child {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .faq__question {
-    padding: 20px 8px;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--color-text);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: color 0.2s var(--ease-out);
-  }
-
-  .faq__question::-webkit-details-marker {
-    display: none;
-  }
-
-  .faq__question::after {
-    content: "+";
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--color-accent);
-    transition: transform 0.25s var(--ease-out);
-  }
-
-  .faq__item[open] .faq__question::after {
-    transform: rotate(45deg);
-  }
-
-  .faq__question:hover {
-    color: var(--color-accent);
-  }
-
-  .faq__answer {
-    padding: 0 8px 20px;
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-    max-width: 62ch;
-  }
-
-  .faq__answer a {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  /* ---- Newsletter ---- */
-  .newsletter {
-    padding: 72px 0 96px;
-  }
-
-  .newsletter__inner {
-    max-width: 560px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 48px 40px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-  }
-
-  .newsletter__title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 12px;
-  }
-
-  .newsletter__desc {
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    margin: 0 auto 28px;
-    max-width: 40ch;
-    line-height: 1.6;
-  }
-
-  .newsletter__form {
-    display: flex;
-    gap: 8px;
-    max-width: 420px;
-    margin: 0 auto;
-  }
-
-  .newsletter__input {
-    flex: 1;
-    padding: 12px 16px;
-    font-size: 14px;
-    font-family: var(--font-sans);
-    color: var(--color-text);
-    background: var(--color-surface-subtle);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    transition: border-color 0.2s var(--ease-out);
-  }
-
-  .newsletter__input:focus {
-    outline: none;
-    border-color: var(--color-accent);
-  }
-
-  .newsletter__btn {
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: var(--font-sans);
-    color: #fff;
-    background: var(--color-accent);
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: background 0.25s var(--ease-out);
-    white-space: nowrap;
-  }
-
-  .newsletter__btn:hover {
-    background: var(--color-accent-hover);
-  }
-
-  @media (max-width: 480px) {
-    .newsletter__form {
-      flex-direction: column;
-    }
-  }
-
-  /* ---- Responsive ---- */
-  @media (max-width: 1024px) {
-    .materials__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .latest__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero {
-      min-height: 70dvh;
-    }
-
-    .hero__actions {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .philosophy__card {
-      padding: 40px 24px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .materials__grid,
-    .latest__grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  .hero { padding: clamp(52px, 8vw, 104px) 0 clamp(64px, 9vw, 116px); border-bottom: 1px solid var(--color-border); }
+  .hero__layout { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.8fr); gap: clamp(40px, 8vw, 120px); align-items: end; }
+  .kicker { color: var(--color-accent); font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; line-height: 1.4; text-transform: uppercase; }
+  .hero h1 { max-width: 11ch; margin-top: 18px; }
+  .hero h1 span { color: var(--color-text-secondary); }
+  .hero__intro { max-width: 47ch; margin-top: 24px; font-size: 16px; }
+  .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 28px; }
+  .hero__text-link, .section-link, .journal__read { color: var(--color-text); font-size: 13px; font-weight: 500; text-decoration: none; }
+  .hero__text-link span, .section-link span, .journal__read span { display: inline-block; margin-left: 5px; color: var(--color-accent); }
+  .hero__note { margin-top: 34px; color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; }
+  .hero__figure { margin: 0; }
+  .hero__figure img { aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid var(--color-border); }
+  .hero__figure figcaption { margin-top: 9px; color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; }
+  .working-notes, .materials, .journal, .newsletter { padding: clamp(64px, 8vw, 112px) 0; }
+  .working-notes { background: var(--color-surface-subtle); }
+  .working-notes__layout { display: grid; grid-template-columns: minmax(210px, 0.6fr) minmax(0, 1fr); gap: clamp(32px, 8vw, 130px); }
+  .working-notes h2, .section-heading h2, .newsletter h2 { max-width: 16ch; margin-top: 14px; }
+  .working-notes__list { border-top: 1px solid var(--color-border); }
+  .working-notes__list > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--color-border); }
+  .working-notes dt, .material-row__number, .journal time { color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .working-notes dd { color: var(--color-text-secondary); font-size: 14px; line-height: 1.6; }
+  .section-heading > p:not(.kicker) { margin-top: 16px; font-size: 15px; }
+  .materials__list { margin-top: 40px; border-top: 1px solid var(--color-border); }
+  .material-row { display: grid; grid-template-columns: 48px minmax(160px, 0.75fr) minmax(0, 1fr); gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--color-border); }
+  .material-row h3 { font-size: 1.1rem; }
+  .material-row__latin { margin-top: 4px; color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; }
+  .material-row__desc { font-size: 14px; line-height: 1.55; }
+  .section-link { display: inline-block; margin-top: 24px; }
+  .journal { border-top: 1px solid var(--color-border); }
+  .journal__grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.75fr); gap: clamp(32px, 7vw, 104px); margin-top: 42px; }
+  .journal__featured { padding-right: clamp(0px, 4vw, 64px); }
+  .journal__featured h3 { max-width: 18ch; margin-top: 12px; font-size: clamp(1.55rem, 2.7vw, 2.3rem); }
+  .journal h3 a { color: var(--color-text); text-decoration: none; }
+  .journal h3 a:hover { color: var(--color-accent); }
+  .journal__featured p { margin-top: 17px; font-size: 14px; }
+  .journal__read { display: inline-block; margin-top: 22px; }
+  .journal__list { border-top: 1px solid var(--color-border); }
+  .journal__item { padding: 18px 0 22px; border-bottom: 1px solid var(--color-border); }
+  .journal__item h3 { margin-top: 8px; font-size: 1.12rem; }
+  .journal__item p { margin-top: 8px; font-size: 13px; line-height: 1.55; }
+  .newsletter { padding-top: 0; }
+  .newsletter__layout { display: flex; align-items: end; justify-content: space-between; gap: 32px; padding-top: 34px; border-top: 1px solid var(--color-border); }
+  .newsletter h2 { font-size: clamp(1.35rem, 2.4vw, 1.8rem); }
+  .newsletter__form { display: flex; gap: 8px; width: min(100%, 420px); }
+  .newsletter__input { flex: 1; min-width: 0; min-height: 42px; padding: 9px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font: inherit; font-size: 13px; }
+  @media (max-width: 760px) { .hero__layout, .working-notes__layout, .journal__grid { grid-template-columns: 1fr; } .hero__figure { max-width: 460px; } .working-notes h2, .section-heading h2, .newsletter h2 { max-width: 20ch; } .newsletter__layout { display: grid; align-items: start; } }
+  @media (max-width: 520px) { .hero { padding-top: 38px; } .hero__actions, .newsletter__form { align-items: stretch; flex-direction: column; } .material-row { grid-template-columns: 34px 1fr; gap: 10px; } .material-row__desc { grid-column: 2; margin-top: 2px; } .working-notes__list > div { grid-template-columns: 1fr; gap: 4px; } }
 </style>
