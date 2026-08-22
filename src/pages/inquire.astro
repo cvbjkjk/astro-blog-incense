@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+---
+
+<BaseLayout
+  title="Ask About Current Incense Pellets — INCENSE"
+  description="Ask about current hand-rolled incense pellet availability, formulas, and next steps for small-batch orders."
+>
+  <section class="inquiry-hero">
+    <div class="container inquiry-hero__inner">
+      <p class="inquiry-hero__eyebrow">Hand rolled · Small batches</p>
+      <h1>Ask about current incense pellets</h1>
+      <p>
+        Each batch is hand-rolled in small quantities. Tell us what interests you and where you are based;
+        we will confirm current availability and next steps before any order is placed.
+      </p>
+    </div>
+  </section>
+
+  <section class="inquiry-content">
+    <div class="container inquiry-content__grid">
+      <div class="inquiry-content__context">
+        <h2>How it works</h2>
+        <ol>
+          <li>Choose a formula, quantity, and your country or region.</li>
+          <li>We confirm what is currently available and answer any practical questions.</li>
+          <li>If the timing is right, we share the next steps for your small-batch order.</li>
+        </ol>
+        <p class="inquiry-content__note">
+          Incense pellets are intended for a temperature-controlled electric warmer. If you are unsure where to begin,
+          choose “Not sure yet” and tell us what you enjoy.
+        </p>
+        <a class="inquiry-content__guide" href="/blog/how-to-heat-incense-pellets/">Read the pellet heating guide →</a>
+      </div>
+      <div class="inquiry-content__form-card">
+        <InquiryForm lang="en" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .inquiry-hero { padding: 72px 0 48px; }
+  .inquiry-hero__inner { max-width: 760px; }
+  .inquiry-hero__eyebrow { color: var(--color-accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; margin-bottom: 14px; text-transform: uppercase; }
+  .inquiry-hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 16px; }
+  .inquiry-hero p { color: var(--color-text-secondary); font-size: 17px; line-height: 1.7; max-width: 58ch; }
+  .inquiry-content { padding: 16px 0 96px; }
+  .inquiry-content__grid { align-items: start; display: grid; gap: 56px; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); }
+  .inquiry-content__context { padding-top: 24px; }
+  .inquiry-content__context h2 { font-size: 1.45rem; margin-bottom: 16px; }
+  .inquiry-content__context ol { color: var(--color-text-secondary); display: grid; gap: 14px; line-height: 1.7; margin: 0 0 28px; padding-left: 22px; }
+  .inquiry-content__note { border-left: 2px solid var(--color-accent); color: var(--color-text-secondary); font-size: 14px; line-height: 1.7; margin: 0 0 24px; padding-left: 16px; }
+  .inquiry-content__guide { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+  .inquiry-content__form-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 36px; }
+  @media (max-width: 800px) { .inquiry-content__grid { gap: 32px; grid-template-columns: 1fr; } .inquiry-content__form-card { padding: 28px 20px; } }
+</style>
